@@ -1,0 +1,896 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#00CED1">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-center-circle.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/wztb.ico?v=">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/wztb.ico?v=">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=" color="#00CED1">
+
+
+
+
+
+  <meta name="keywords" content="搭建博客,Hexo," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="前言电脑系统:win10企业版 64位相关环境包下载链接:https://pan.baidu.com/s/1T-RDhwoMb-slOivQ-qMViQ 提取码:t3xt（包含git与node.js，全部默认安装即可）最好再下载安装一个Notepad++(小巧而且功能强大) 1.检查环境打开cmd，输入如图所示命令，Node.js安装成功如下git安装成功的标志就是再任意地方鼠标右键会出现如下两个">
+<meta name="keywords" content="搭建博客,Hexo">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Github+Hexo搭建个人博客">
+<meta property="og:url" content="http://yoursite.com/2018/09/30/Github+Hexo搭建个人博客/index.html">
+<meta property="og:site_name" content="fe1yu&#39;blog">
+<meta property="og:description" content="前言电脑系统:win10企业版 64位相关环境包下载链接:https://pan.baidu.com/s/1T-RDhwoMb-slOivQ-qMViQ 提取码:t3xt（包含git与node.js，全部默认安装即可）最好再下载安装一个Notepad++(小巧而且功能强大) 1.检查环境打开cmd，输入如图所示命令，Node.js安装成功如下git安装成功的标志就是再任意地方鼠标右键会出现如下两个">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://i.imgur.com/k0pnmNq.png">
+<meta property="og:image" content="https://images2017.cnblogs.com/blog/1108615/201710/1108615-20171021222542474-1351750125.png">
+<meta property="og:image" content="https://i.imgur.com/WefhSyX.png">
+<meta property="og:image" content="https://images2017.cnblogs.com/blog/1108615/201710/1108615-20171021223928802-1978574025.png">
+<meta property="og:image" content="https://images2017.cnblogs.com/blog/1108615/201710/1108615-20171021224442443-1196707159.png">
+<meta property="og:image" content="https://images2017.cnblogs.com/blog/1108615/201710/1108615-20171021224910568-2096615217.png">
+<meta property="og:image" content="https://images2017.cnblogs.com/blog/1108615/201710/1108615-20171021225015224-1426206003.png">
+<meta property="og:image" content="https://images2017.cnblogs.com/blog/1108615/201710/1108615-20171021230241646-1660449756.png">
+<meta property="og:image" content="https://images2017.cnblogs.com/blog/1108615/201710/1108615-20171021231521646-1099473727.png">
+<meta property="og:image" content="https://images2017.cnblogs.com/blog/1108615/201710/1108615-20171021231705474-1404994153.png">
+<meta property="og:image" content="https://images2017.cnblogs.com/blog/1108615/201710/1108615-20171021231833912-663774637.png">
+<meta property="og:image" content="https://images2017.cnblogs.com/blog/1108615/201710/1108615-20171021232311912-1198771378.png">
+<meta property="og:image" content="https://images2017.cnblogs.com/blog/1108615/201710/1108615-20171021232413224-1288183746.png">
+<meta property="og:image" content="https://images2017.cnblogs.com/blog/1108615/201710/1108615-20171021233157224-1386748377.png">
+<meta property="og:image" content="https://images2017.cnblogs.com/blog/1108615/201710/1108615-20171021233630568-279882178.png">
+<meta property="og:image" content="https://images2017.cnblogs.com/blog/1108615/201710/1108615-20171021234107209-1205335399.png">
+<meta property="og:image" content="https://images2017.cnblogs.com/blog/1108615/201710/1108615-20171021234314146-695835137.png">
+<meta property="og:image" content="https://images2017.cnblogs.com/blog/1108615/201710/1108615-20171021234528552-610835964.png">
+<meta property="og:image" content="https://images2017.cnblogs.com/blog/1108615/201710/1108615-20171021234636834-426105098.png">
+<meta property="og:image" content="https://images2017.cnblogs.com/blog/1108615/201710/1108615-20171021234906724-1938556332.png">
+<meta property="og:image" content="https://images2017.cnblogs.com/blog/1108615/201710/1108615-20171021235116271-1521882533.png">
+<meta property="og:image" content="https://images2017.cnblogs.com/blog/1108615/201710/1108615-20171021235812974-84318377.png">
+<meta property="og:image" content="https://images2017.cnblogs.com/blog/1108615/201710/1108615-20171021235722365-818312042.png">
+<meta property="og:image" content="https://images2017.cnblogs.com/blog/1108615/201710/1108615-20171022000227834-1991784353.png">
+<meta property="og:image" content="https://images2017.cnblogs.com/blog/1108615/201710/1108615-20171022000508865-46787156.png">
+<meta property="og:image" content="https://images2017.cnblogs.com/blog/1108615/201710/1108615-20171022001237943-657272339.png">
+<meta property="og:image" content="https://images2017.cnblogs.com/blog/1108615/201710/1108615-20171022001410662-1611125904.png">
+<meta property="og:image" content="https://images2017.cnblogs.com/blog/1108615/201710/1108615-20171022001738037-1195721153.png">
+<meta property="og:image" content="https://i.imgur.com/uOdBgQc.png">
+<meta property="og:image" content="https://i.imgur.com/UwCpcf8.png">
+<meta property="og:image" content="https://i.imgur.com/jQkhMPD.png">
+<meta property="og:image" content="https://i.imgur.com/YMjLgZw.png">
+<meta property="og:image" content="https://i.imgur.com/UfMErMN.png">
+<meta property="og:image" content="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=58406679,810992231&fm=26&gp=0.jpg">
+<meta property="og:updated_time" content="2018-09-30T13:08:55.768Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Github+Hexo搭建个人博客">
+<meta name="twitter:description" content="前言电脑系统:win10企业版 64位相关环境包下载链接:https://pan.baidu.com/s/1T-RDhwoMb-slOivQ-qMViQ 提取码:t3xt（包含git与node.js，全部默认安装即可）最好再下载安装一个Notepad++(小巧而且功能强大) 1.检查环境打开cmd，输入如图所示命令，Node.js安装成功如下git安装成功的标志就是再任意地方鼠标右键会出现如下两个">
+<meta name="twitter:image" content="https://i.imgur.com/k0pnmNq.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/09/30/Github+Hexo搭建个人博客/"/>
+
+
+
+
+
+  <title>Github+Hexo搭建个人博客 | fe1yu'blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">fe1yu'blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">三思而行，及时止损</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-something">
+          <a href="/something/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-rmb"></i> <br />
+            
+            打赏
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/30/Github+Hexo搭建个人博客/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="fe1yu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/joker.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="fe1yu'blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Github+Hexo搭建个人博客</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-30T13:11:19+08:00">
+                2018-09-30
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/学习笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">学习笔记</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                  <span class="post-meta-divider">|</span>
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1.6k字
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  5分钟
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><strong>前言</strong><br>电脑系统:win10企业版 64位<br>相关环境包下载链接:<a href="https://pan.baidu.com/s/1T-RDhwoMb-slOivQ-qMViQ" target="_blank" rel="noopener">https://pan.baidu.com/s/1T-RDhwoMb-slOivQ-qMViQ</a> 提取码:t3xt（包含git与node.js，全部默认安装即可）<br>最好再下载安装一个Notepad++(小巧而且功能强大)</p>
+<h1 id="1-检查环境"><a href="#1-检查环境" class="headerlink" title="1.检查环境"></a>1.检查环境</h1><p>打开cmd，输入如图所示命令，Node.js安装成功如下<br><img src="https://i.imgur.com/k0pnmNq.png" alt=""><br>git安装成功的标志就是再任意地方鼠标右键会出现如下两个选择<br><img src="https://images2017.cnblogs.com/blog/1108615/201710/1108615-20171021222542474-1351750125.png" alt=""></p>
+<h1 id="2-注册Github以及新建项目"><a href="#2-注册Github以及新建项目" class="headerlink" title="2.注册Github以及新建项目"></a>2.注册Github以及新建项目</h1><p>去GitHub注册账号并完成邮箱激活，然后新建项目具体细节如下<br><img src="https://i.imgur.com/WefhSyX.png" alt=""><br>项目名称必须为 xxx.github.io，而且需要勾选下方红框内的选项。请自行忽略图片中的警示，因为我已经建立了此项目且本文中的xxx除有特殊说明外均为代指。在建好的项目右侧有个settings按钮，点击它，向下拉到GitHub Pages，你会看到那边有个网址，这就是GitHub免费给你的域名了，访问它，你将会惊奇的发现该项目已经被部署到网络上，能够通过外网来访问它。<br><img src="https://images2017.cnblogs.com/blog/1108615/201710/1108615-20171021223928802-1978574025.png" alt="">  </p>
+<h1 id="3-安装部署并配置"><a href="#3-安装部署并配置" class="headerlink" title="3.安装部署并配置"></a>3.安装部署并配置</h1><h2 id="1-安装Hexo"><a href="#1-安装Hexo" class="headerlink" title="1.安装Hexo"></a>1.安装Hexo</h2><p>为了方便管理建议为你的博客本地文件建立单独的文件夹，我的是<code>D:\blog</code>。然后通过cmd进入该文件夹<img src="https://images2017.cnblogs.com/blog/1108615/201710/1108615-20171021224442443-1196707159.png" alt=""><br>键入<code>npm install hexo -g</code>开始安装Hexo。<br><img src="https://images2017.cnblogs.com/blog/1108615/201710/1108615-20171021224910568-2096615217.png" alt=""><br>键入<code>hexo -v</code>，检查是否安装成功。<br><img src="https://images2017.cnblogs.com/blog/1108615/201710/1108615-20171021225015224-1426206003.png" alt=""><br>然后在该文件夹下输入<code>hexo init</code>，初始化（漫长的等待………)<br><img src="https://images2017.cnblogs.com/blog/1108615/201710/1108615-20171021230241646-1660449756.png" alt=""><br>看到最后的的“Start blogging with Hexo”，敲击激动有没有！！！<br>键入<code>npm install</code>安装所需的组件。<br><img src="https://images2017.cnblogs.com/blog/1108615/201710/1108615-20171021231521646-1099473727.png" alt=""><br>键入<code>hexo g</code>首次体验Hexo。<br><img src="https://images2017.cnblogs.com/blog/1108615/201710/1108615-20171021231705474-1404994153.png" alt=""><br>键入<code>hexo s</code>，访问如图网址，开启本地访问，正式体验Hexo<img src="https://images2017.cnblogs.com/blog/1108615/201710/1108615-20171021231833912-663774637.png" alt=""><br><strong>问题</strong>：一直无法访问成功。这是因为默认的4000端口被占用.解决办法就是ctrl+c停止服务器，然后键入<code>hexo server -p 端口号</code><br><img src="https://images2017.cnblogs.com/blog/1108615/201710/1108615-20171021232311912-1198771378.png" alt=""><br>然后再次访问。出现下图即为成功<br><img src="https://images2017.cnblogs.com/blog/1108615/201710/1108615-20171021232413224-1288183746.png" alt="">  </p>
+<h2 id="2-部署到GitHub"><a href="#2-部署到GitHub" class="headerlink" title="2.部署到GitHub"></a>2.部署到GitHub</h2><p>在该文件夹中右击选择<code>Git Base Here</code>然后分别键入<code>git config --global user.name &quot;xxx&quot;</code>,<code>git config --global user.email &quot;xxx&quot;</code>xxx分别是你注册GitHub时使用的用户名与邮箱，如图。<br><img src="https://images2017.cnblogs.com/blog/1108615/201710/1108615-20171021233157224-1386748377.png" alt=""><br>键入<code>cd ~/.ssh</code>检查是否有.ssh的文件夹，输入ls，列出该文件夹下的内容。下图说明存在<br><img src="https://images2017.cnblogs.com/blog/1108615/201710/1108615-20171021233630568-279882178.png" alt=""><br>输入<code>ssh-keygen -t rsa -C “xxx”</code>，连续若干个回车，生成密钥，最后得到两个文件：id_rsa和id_rsa.pub（默认存储路径是：C:\Users\Administrator.ssh）。<br><img src="https://images2017.cnblogs.com/blog/1108615/201710/1108615-20171021234107209-1205335399.png" alt=""><br>输入<code>eval &quot;$(ssh-agent -s)&quot;</code>，添加密钥到ssh-agent。<br><img src="https://images2017.cnblogs.com/blog/1108615/201710/1108615-20171021234314146-695835137.png" alt=""><br>在输入<code>ssh-add ~/.ssh/id_rsa</code>，添加生成的ssh key到ssh-agent。<br><img src="https://images2017.cnblogs.com/blog/1108615/201710/1108615-20171021234528552-610835964.png" alt=""><br>登录Github，点击头像下的settings，添加ssh<br><img src="https://images2017.cnblogs.com/blog/1108615/201710/1108615-20171021234636834-426105098.png" alt=""><br>点击new ssh key，将id_rsa.pub（用notepad++打开，当作txt处理也可）文件里的内容复制上去title随意。<br><img src="https://images2017.cnblogs.com/blog/1108615/201710/1108615-20171021234906724-1938556332.png" alt=""><br>输入<code>ssh -T git@github.com</code>，测试添加ssh是否成功。如果看到Hi后面是你的用户名，就说明成功了。注意第一次连接需要输入GitHub的账号密码。<br><img src="https://images2017.cnblogs.com/blog/1108615/201710/1108615-20171021235116271-1521882533.png" alt=""><br><strong>问题</strong>：假如ssh-key配置失败，那么只要以下步骤就能完全解决<br>首先，清除所有的key-pair<br><code>ssh-add -D</code><br><code>rm -r ~/.ssh</code><br>删除你在github中的public-key<br>重新生成ssh密钥对<br><code>ssh-keygen -t rsa -C &quot;xxx@xxx.com&quot;</code><br>然后以上正常操作。</p>
+<h2 id="3-配置Deployment"><a href="#3-配置Deployment" class="headerlink" title="3.配置Deployment"></a>3.配置Deployment</h2><p>在你的博客文件夹中。找到_config.yml文件并打开（用自带的txt比较麻烦，所以再次安利一哈notepad++）。打开拉到末尾，修改如下<br><img src="https://images2017.cnblogs.com/blog/1108615/201710/1108615-20171021235812974-84318377.png" alt=""><br>注意每个冒号之后都有一个空格，repo值是你在github项目里的ssh，因人而异，把里面复制粘贴过去即可，然后保存。<br><img src="https://images2017.cnblogs.com/blog/1108615/201710/1108615-20171021235722365-818312042.png" alt="">  </p>
+<h1 id="4-测试"><a href="#4-测试" class="headerlink" title="4.测试"></a>4.测试</h1><p>新建一篇博文，在cmd执行命令：<code>hexo new post “xxx”</code>，xxx为博客名。我们起名为“你好，hexo”<br><img src="https://images2017.cnblogs.com/blog/1108615/201710/1108615-20171022000227834-1991784353.png" alt=""><br>此时在_post文件夹下将会看到已经创立的文件<br><img src="https://images2017.cnblogs.com/blog/1108615/201710/1108615-20171022000508865-46787156.png" alt=""><br>在生成静态页面以及部署文章之前，需要安装一个扩展：<code>npm install hexo-deployer-git --save</code><br><img src="https://images2017.cnblogs.com/blog/1108615/201710/1108615-20171022001237943-657272339.png" alt=""><br>这时候普及一哈hexo的命令：<br><code>hexo clean</code> 清除缓存<br><code>hexo s</code> 本地预览<br><code>hexo d</code> 生成静态页面<br><code>hexo g</code> 部署到GitHub<br>最后两条命令往往合写成<code>hexo d -g</code><br>使用编辑器编好文章，那么就可以使用命令：<code>hexo d -g</code>，生成以及部署了<br><img src="https://images2017.cnblogs.com/blog/1108615/201710/1108615-20171022001410662-1611125904.png" alt=""><br>部署成功后访问你的地址：<a href="http://xxx.github.io（免费域名）那么将看到生成的文章。" target="_blank" rel="noopener">http://xxx.github.io（免费域名）那么将看到生成的文章。</a><br><img src="https://images2017.cnblogs.com/blog/1108615/201710/1108615-20171022001738037-1195721153.png" alt="">  </p>
+<h1 id="5-绑定域名"><a href="#5-绑定域名" class="headerlink" title="5.绑定域名"></a>5.绑定域名</h1><p>如果你想高大上一点弄个<a href="http://www.xxx.com的网址的话就需要花钱了。" target="_blank" rel="noopener">www.xxx.com的网址的话就需要花钱了。</a></p>
+<h2 id="1-购买域名"><a href="#1-购买域名" class="headerlink" title="1.购买域名"></a>1.购买域名</h2><p>关于购买域名，国内有阿里云，腾讯云，易名等；国外有godaddy，name.com，namecheap等。而且新用户都有优惠，第一年也就几十块钱。买的越多越便宜，三年的话150+左右。但是国外的一些不支持支付宝微信，有的只能用visa信用卡或者运通卡。嫌麻烦就买国内的域名吧，本人就是从腾讯云买的域名，以下以本人为例 其他地方购买的类似。</p>
+<h2 id="2-域名解析"><a href="#2-域名解析" class="headerlink" title="2.域名解析"></a>2.域名解析</h2><p>现在依据国内政策，国内购买的域名不备案的话管局是不会给你解析的，也就是不能访问，按服务型政府的效率来看20个工作日左右吧。但是如果你迫不及待的话还是有办法的，用国外的dns，虽然速度可能慢一点，但足够使用。等备案完成再换成国内的dns即可。我用的是<a href="https://asia.cloudns.net/" target="_blank" rel="noopener">Cloudns</a>，一家保加利亚的服务商，网站还有简体中文的选项，对大陆及其友好。注册后点击增加新的DNS域，<br><img src="https://i.imgur.com/uOdBgQc.png" alt=""><br>选择第一个后如下图<br><img src="https://i.imgur.com/UwCpcf8.png" alt=""><br>第一个框内的东东记下来，第二个框内填你买的域名。然后去你的域名购买商那里作如下修改<br><img src="https://i.imgur.com/jQkhMPD.png" alt=""><br>新填入的域名服务器即为第一个红框内的内容，提交保存即可。</p>
+<h2 id="3-绑定域名"><a href="#3-绑定域名" class="headerlink" title="3.绑定域名"></a>3.绑定域名</h2><p>进入<code>D:\blog\source</code>新建txt，键入<a href="http://www.xxx.com" target="_blank" rel="noopener">www.xxx.com</a>(你买的域名）保存为CNAME且去掉后缀名(这句划重点）。回到Cloudns，进入如下界面<br><img src="https://i.imgur.com/YMjLgZw.png" alt=""><br>点击添加新纪录<br><img src="https://i.imgur.com/UfMErMN.png" alt=""><br>第一个框填www即可，第二个框填xxx.github.io（你的项目的名字）保存便大功告成了。</p>
+<hr>
+<p><strong><em>PS：如果您觉得本文还不错可打赏一二，您的打赏是对我最大的支持。</em></strong><br><img src="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=58406679,810992231&amp;fm=26&amp;gp=0.jpg" alt=""></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    fe1yu
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://yoursite.com/2018/09/30/Github+Hexo搭建个人博客/" title="Github+Hexo搭建个人博客">http://yoursite.com/2018/09/30/Github+Hexo搭建个人博客/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/搭建博客/" rel="tag"># 搭建博客</a>
+          
+            <a href="/tags/Hexo/" rel="tag"># Hexo</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/09/28/Basic-knowledge/" rel="next" title="Basic knowledge">
+                <i class="fa fa-chevron-left"></i> Basic knowledge
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/joker.jpg"
+                alt="fe1yu" />
+            
+              <p class="site-author-name" itemprop="name">fe1yu</p>
+              <p class="site-description motion-element" itemprop="description">三思而行，及时止损</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-检查环境"><span class="nav-text">1.检查环境</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-注册Github以及新建项目"><span class="nav-text">2.注册Github以及新建项目</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-安装部署并配置"><span class="nav-text">3.安装部署并配置</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-安装Hexo"><span class="nav-text">1.安装Hexo</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-部署到GitHub"><span class="nav-text">2.部署到GitHub</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-配置Deployment"><span class="nav-text">3.配置Deployment</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-测试"><span class="nav-text">4.测试</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5-绑定域名"><span class="nav-text">5.绑定域名</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-购买域名"><span class="nav-text">1.购买域名</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-域名解析"><span class="nav-text">2.域名解析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-绑定域名"><span class="nav-text">3.绑定域名</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+		  <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=710057&auto=1&height=66"></iframe>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Powered by fe1yu</span>
+
+  
+</div>
+
+
+  
+
+
+
+
+
+
+
+<div class="theme-info"><div class="powered-by"><span class="post-count">博客全站共3.2k字</span>
+</div>
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i> 访问人数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>  总阅读量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+	
+   <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;" ></canvas> 
+   <script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script> 
+   <script type="text/javascript" src="/js/src/fireworks.js"></script>
+    
+
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/canvas_lines.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v="></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v="></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v="></script>
+<script type="text/javascript" src="/js/src/post-details.js?v="></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v="></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  <!--崩溃欺骗-->
+<script type="text/javascript" src="/js/src/crash_cheat.js"></script>
+<link rel="stylesheet" href="/dist/APlayer.min.css">
+<div id="aplayer"></div>
+<script type="text/javascript" src="/dist/APlayer.min.js"></script>
+<script type="text/javascript" src="/dist/music.js"></script>
+</body>
+</html>
