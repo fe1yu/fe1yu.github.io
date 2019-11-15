@@ -26,7 +26,7 @@ const ap = new APlayer({
 		artist: '杨宗纬',
 		url: 'https://sharefs.yun.kugou.com/201911152333/37b81cf43fb5d0b60d8e967115cff046/G141/M09/04/17/bZQEAFuGoEGAIjQvAEYfMSzznLg195.mp3',
 		cover: 'http://img5.imgtn.bdimg.com/it/u=1175435549,3883546234&fm=26&gp=0.jpg',
-	}
+	},
 	{
 		name: "兰亭序",
 		artist: '周杰伦',
