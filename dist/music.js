@@ -6,7 +6,7 @@ const ap = new APlayer({
 	{
 		name: "为你我受冷风吹",
         artist: '胡彦斌',
-        url: 'http://m10.music.126.net/20191115234856/1eb814d4fa9fef4adca316a496e3da1c/ymusic/ee6d/3a50/f87c/2a5d8ecccd61f1213528d69ed68900b9.mp3',
+        url: 'http://m.kugou.com/play/info/7DA8C2472D83F2AB660F5A9D94250401',
         cover: 'https://ss0.baidu.com/6ONWsjip0QIZ8tyhnq/it/u=4034761545,3021885026&fm=58',
 	},
 	{
@@ -25,13 +25,13 @@ const ap = new APlayer({
 		name: "空白格",
 		artist: '杨宗纬',
 		url: 'https://sharefs.yun.kugou.com/201911152333/37b81cf43fb5d0b60d8e967115cff046/G141/M09/04/17/bZQEAFuGoEGAIjQvAEYfMSzznLg195.mp3',
-		cover: 'http://img5.imgtn.bdimg.com/it/u=1175435549,3883546234&fm=26&gp=0.jpg',
+		cover: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1573844674962&di=f8a48c217ecb6be98e5d4f331d2076b3&imgtype=0&src=http%3A%2F%2Foss.tan8.com%2Fjtpnew%2F47%2F14147%2Fjtpnew20160105101847_big.jpg%3Fv%3D1491758395',
 	},
 	{
 		name: "兰亭序",
 		artist: '周杰伦',
 		url: 'http://ip.h5.ra01.sycdn.kuwo.cn/6e01f28f6a4da70d8562bc60bb9b9570/5dcec8a3/resource/n1/128/98/87/2474261104.mp3',
-		cover: 'http://a.zdmimg.com/201805/16/5afc40a44ed9b2608.jpg_e600.jpg',
+		cover: 'https://gss1.bdstatic.com/9vo3dSag_xI4khGkpoWK1HF6hhy/baike/w%3D268%3Bg%3D0/sign=e74cd1d3c11b9d168ac79d67cbe5d3b2/8601a18b87d6277f0fa5713427381f30e924fc03.jpg',
 	}
 ]
 });
