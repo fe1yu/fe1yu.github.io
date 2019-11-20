@@ -31,7 +31,7 @@ const ap = new APlayer({
 		name: "兰亭序",
 		artist: '周杰伦',
 		url: 'http://www.170mv.com/kw/antiserver.kuwo.cn/anti.s?rid=MUSIC_440616&response=res&format=mp3|aac&type=convert_url&br=128kmp3&agent=iPhone&callback=getlink&jpcallback=getlink.mp3',
-		cover: 'http://www.170mv.com/kw/antiserver.kuwo.cn/anti.s?rid=MUSIC_440616&response=res&format=mp3|aac&type=convert_url&br=128kmp3&agent=iPhone&callback=getlink&jpcallback=getlink.mp3',
+		cover: 'http://5b0988e595225.cdn.sohucs.com/images/20180118/0f13560c1e8f46a68ea1f0d404e6add0.jpeg',
 	}
 ]
 });
