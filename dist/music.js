@@ -6,7 +6,7 @@ const ap = new APlayer({
 	{
 		name: "为你我受冷风吹",
         artist: '胡彦斌',
-        url: 'https://sharefs.yun.kugou.com/201911192316/a4e0abb06a311c9d6c6e14f4bac01ae9/G013/M0A/10/19/TQ0DAFUPcDuAIA4nAERk5sw7iwE189.mp3',
+        url: 'http://m10.music.126.net/20200116193523/5d96a771cbcf64e6019e17613f0a8685/ymusic/ee6d/3a50/f87c/2a5d8ecccd61f1213528d69ed68900b9.mp3',
         cover: 'https://ss0.baidu.com/6ONWsjip0QIZ8tyhnq/it/u=4034761545,3021885026&fm=58',
 	},
 	{
@@ -32,6 +32,12 @@ const ap = new APlayer({
 		artist: '周杰伦',
 		url: 'http://www.170mv.com/kw/antiserver.kuwo.cn/anti.s?rid=MUSIC_440616&response=res&format=mp3|aac&type=convert_url&br=128kmp3&agent=iPhone&callback=getlink&jpcallback=getlink.mp3',
 		cover: 'http://5b0988e595225.cdn.sohucs.com/images/20180118/0f13560c1e8f46a68ea1f0d404e6add0.jpeg',
+	}	
+	{
+		name: "修罗",
+		artist: 'DOES',
+		url: 'http://m10.music.126.net/20200116192314/47e28ad50e4aed003f12a7e61ac1fea2/ymusic/eaae/1575/ab6f/b02882f925cc65e49fa73c7a0a2a5532.mp3',
+		cover: 'http://p4.qhimg.com/dr/250_500_/t019b72bdc606953acf.jpg',
 	}
 ]
 });
