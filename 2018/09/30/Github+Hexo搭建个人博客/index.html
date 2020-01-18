@@ -43,19 +43,19 @@
       hits: {"per_page":10},
       labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
     },
-    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":3,"unescape":false,"preload":false},
     path: '',
     motion: {"enable":false,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
   };
 </script>
 
-  <meta name="description" content="前言电脑系统:win10企业版 64位相关环境包下载链接:https://pan.baidu.com/s/1T-RDhwoMb-slOivQ-qMViQ 提取码:t3xt（包含git与node.js，全部默认安装即可）最好再下载安装一个Notepad++(小巧而且功能强大) 1.检查环境打开cmd，输入如图所示命令，Node.js安装成功如下git安装成功的标志就是再任意地方鼠标右键会出现如下两个">
+  <meta name="description" content="前言电脑系统:win10企业版 64位相关环境包下载链接:https://pan.baidu.com/s/1T-RDhwoMb-slOivQ-qMViQ 提取码:t3xt（包含git与node.js，全部默认安装即可）最好再下载安装一个Notepad++(小巧而且功能强大)">
 <meta name="keywords" content="搭建博客,Hexo">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Github+Hexo搭建个人博客">
 <meta property="og:url" content="https://www.fe1yu.com/2018/09/30/Github+Hexo搭建个人博客/index.html">
 <meta property="og:site_name" content="fe1yu&#39;blog">
-<meta property="og:description" content="前言电脑系统:win10企业版 64位相关环境包下载链接:https://pan.baidu.com/s/1T-RDhwoMb-slOivQ-qMViQ 提取码:t3xt（包含git与node.js，全部默认安装即可）最好再下载安装一个Notepad++(小巧而且功能强大) 1.检查环境打开cmd，输入如图所示命令，Node.js安装成功如下git安装成功的标志就是再任意地方鼠标右键会出现如下两个">
+<meta property="og:description" content="前言电脑系统:win10企业版 64位相关环境包下载链接:https://pan.baidu.com/s/1T-RDhwoMb-slOivQ-qMViQ 提取码:t3xt（包含git与node.js，全部默认安装即可）最好再下载安装一个Notepad++(小巧而且功能强大)">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://s2.ax1x.com/2019/11/08/MZNSyV.png">
 <meta property="og:image" content="https://s2.ax1x.com/2019/11/08/MZNam8.png">
@@ -93,10 +93,10 @@
 <meta property="og:image" content="https://s2.ax1x.com/2019/11/08/MZNYlt.png">
 <meta property="og:image" content="https://s2.ax1x.com/2019/11/08/MZNeQx.png">
 <meta property="og:image" content="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=58406679,810992231&fm=26&gp=0.jpg">
-<meta property="og:updated_time" content="2019-11-12T13:55:53.543Z">
+<meta property="og:updated_time" content="2020-01-18T07:34:21.600Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Github+Hexo搭建个人博客">
-<meta name="twitter:description" content="前言电脑系统:win10企业版 64位相关环境包下载链接:https://pan.baidu.com/s/1T-RDhwoMb-slOivQ-qMViQ 提取码:t3xt（包含git与node.js，全部默认安装即可）最好再下载安装一个Notepad++(小巧而且功能强大) 1.检查环境打开cmd，输入如图所示命令，Node.js安装成功如下git安装成功的标志就是再任意地方鼠标右键会出现如下两个">
+<meta name="twitter:description" content="前言电脑系统:win10企业版 64位相关环境包下载链接:https://pan.baidu.com/s/1T-RDhwoMb-slOivQ-qMViQ 提取码:t3xt（包含git与node.js，全部默认安装即可）最好再下载安装一个Notepad++(小巧而且功能强大)">
 <meta name="twitter:image" content="https://s2.ax1x.com/2019/11/08/MZNSyV.png">
 
 <link rel="canonical" href="https://www.fe1yu.com/2018/09/30/Github+Hexo搭建个人博客/">
@@ -213,18 +213,17 @@
   <span class="search-icon">
     <i class="fa fa-search"></i>
   </span>
-  <div class="search-input" id="search-input"></div>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="搜索..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
   <span class="popup-btn-close">
     <i class="fa fa-times-circle"></i>
   </span>
 </div>
-<div class="algolia-results">
-  <div id="algolia-stats"></div>
-  <div id="algolia-hits"></div>
-  <div id="algolia-pagination" class="algolia-pagination"></div>
-</div>
+<div id="search-result"></div>
 
-  
 </div>
 <div class="search-pop-overlay"></div>
 
@@ -283,7 +282,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-11-12 21:55:53" itemprop="dateModified" datetime="2019-11-12T21:55:53+08:00">2019-11-12</time>
+                <time title="修改时间：2020-01-18 15:34:21" itemprop="dateModified" datetime="2020-01-18T15:34:21+08:00">2020-01-18</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -316,6 +315,7 @@
 
       
         <p><strong>前言</strong><br>电脑系统:win10企业版 64位<br>相关环境包下载链接:<a href="https://pan.baidu.com/s/1T-RDhwoMb-slOivQ-qMViQ" target="_blank" rel="noopener">https://pan.baidu.com/s/1T-RDhwoMb-slOivQ-qMViQ</a> 提取码:t3xt（包含git与node.js，全部默认安装即可）<br>最好再下载安装一个Notepad++(小巧而且功能强大)</p>
+<a id="more"></a>
 <h1 id="1-检查环境"><a href="#1-检查环境" class="headerlink" title="1.检查环境"></a>1.检查环境</h1><p>打开cmd，输入如图所示命令，Node.js安装成功如下<br><img src="https://s2.ax1x.com/2019/11/08/MZNSyV.png" alt="MZNSyV.png">git安装成功的标志就是再任意地方鼠标右键会出现如下两个选择<br><img src="https://s2.ax1x.com/2019/11/08/MZNam8.png" alt="MZNam8.png"></p>
 <h1 id="2-注册Github以及新建项目"><a href="#2-注册Github以及新建项目" class="headerlink" title="2.注册Github以及新建项目"></a>2.注册Github以及新建项目</h1><p>去GitHub注册账号并完成邮箱激活，然后新建项目具体细节如下<img src="https://s2.ax1x.com/2019/11/08/MZN1FH.png" alt="MZN1FH.png">)<br>项目名称必须为 xxx.github.io，而且需要勾选下方红框内的选项。请自行忽略图片中的警示，因为我已经建立了此项目(本文中的xxx除有特殊说明外均为代指)。在建好的项目右侧有个settings按钮，点击它，向下拉到GitHub Pages，你会看到那边有个网址，这就是GitHub免费给你的域名了，访问它，你将会惊奇的发现该项目已经被部署到网络上，能够通过外网来访问它。<br><img src="https://s2.ax1x.com/2019/11/08/MZNgXV.png" alt="MZNgXV.png"></p>
 <h1 id="3-安装部署并配置"><a href="#3-安装部署并配置" class="headerlink" title="3.安装部署并配置"></a>3.安装部署并配置</h1><h2 id="1-安装Hexo"><a href="#1-安装Hexo" class="headerlink" title="1.安装Hexo"></a>1.安装Hexo</h2><p>为了方便管理建议为你的博客本地文件建立单独的文件夹，我的是<code>D:\blog</code>。然后通过cmd进入该文件夹<br><img src="https://s2.ax1x.com/2019/11/08/MZNpLT.png" alt="MZNpLT.png"><br>键入<code>npm install hexo -g</code>开始安装Hexo。<br><img src="https://s2.ax1x.com/2019/11/08/MZNZS1.png" alt="MZNZS1.png"><br>键入<code>hexo -v</code>，检查是否安装成功。<br><img src="https://s2.ax1x.com/2019/11/08/MZNMwD.png" alt="MZNMwD.png"></p>
@@ -356,6 +356,23 @@
       </div>
 
   </div>
+</div>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>fe1yu
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://www.fe1yu.com/2018/09/30/Github+Hexo搭建个人博客/" title="Github+Hexo搭建个人博客">https://www.fe1yu.com/2018/09/30/Github+Hexo搭建个人博客/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
 </div>
 
 
@@ -485,6 +502,9 @@
         <a href="/atom.xml" title="RSS → /atom.xml"><i class="fa fa-fw fa-rss"></i>RSS</a>
       </span>
   </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
 
 
 
@@ -511,10 +531,10 @@
   </span>
   <span class="author" itemprop="copyrightHolder">fe1yu</span>
 </div>
-  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.7.1
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动
   </div>
   <span class="post-meta-divider">|</span>
-  <div class="theme-info">主题 – <a href="https://pisces.theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.7.0
+  <div class="theme-info">主题 – <a href="https://pisces.theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a>
   </div>
 
         
@@ -577,10 +597,7 @@
 
 
 
-  
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/instantsearch.js@2/dist/instantsearch.min.css">
-<script src="//cdn.jsdelivr.net/npm/instantsearch.js@2/dist/instantsearch.min.js"></script><script src="/js/algolia-search.js"></script>
-
+  <script src="/js/local-search.js"></script>
 
 
 
