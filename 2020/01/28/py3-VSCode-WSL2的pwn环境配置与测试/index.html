@@ -108,7 +108,7 @@
 <meta property="og:image" content="https://img-blog.csdnimg.cn/2019082717285142.png">
 <meta property="og:image" content="https://s2.ax1x.com/2020/01/31/18mOkF.jpg">
 <meta property="og:image" content="https://s2.ax1x.com/2020/01/31/18mqTU.jpg">
-<meta property="og:updated_time" content="2020-01-31T15:20:16.350Z">
+<meta property="og:updated_time" content="2020-02-13T09:23:49.451Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="py3+VSCode+WSL2的pwn环境配置与使用">
 <meta name="twitter:description" content="0x00 前言随着进入全面建成小康社会的最后一年，Python2也正式停止了支持。网上的pwn基础教程很多都过时了，写着peda、pwntools、pwndbg等只支持py2，现在看起来是不太对，迁移是大势所趋，很多项目尤其是大项目早就完成了向py3的迁移，有图为证。最近宅在家里又比较闲，想着能不能把环境迁移到py3上，一番折腾后感觉还不错，故把自己踩到的坑写下来，也写一篇基础教程。我就是ecli">
@@ -421,8 +421,7 @@
 <p>tips：如果报可能是因为Windows操作系统版本较低，更新一下或者加入Windows预览体验计划。</p>
 <h1 id="0x02-Linux的配置"><a href="#0x02-Linux的配置" class="headerlink" title="0x02 Linux的配置"></a>0x02 Linux的配置</h1><p>鉴于网络环境，可以把软件源还有pip源都换成国内，网上教程很多，不再赘述。</p>
 <p>安装并更新pip3</p>
-<p><code>sudo apt install python3-pip`</code></p>
-<p><code></code>python3 -m pip install –upgrade pip`</p>
+<p><code>sudo apt install python3-pip</code><br><code>python3 -m pip install --upgrade pip</code></p>
 <p>后续使用pip3的时候可能会出现如下报错</p>
 <p><code>Traceback (most recent call last): File &quot;/usr/bin/pip3&quot;, line 9</code></p>
 <p>经查这是pip 10.0.0版本的BUG，现在可能已经修复了。解决方法：修改 <strong>/usr/bin/pip</strong> 文件</p>
@@ -431,29 +430,19 @@
 <p>after</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pip <span class="keyword">import</span> __main__</span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    sys.exit(__main__._main())</span><br></pre></td></tr></table></figure>
 <p>由于是64位系统，所以添加32位支持</p>
-<p><code>sudo dpkg --add-architecture i386</code></p>
-<p><code>sudo apt-get update</code></p>
-<p><code>sudo apt-get -y install libc6-i386</code></p>
+<p><code>sudo dpkg --add-architecture i386</code><br><code>sudo apt-get update</code><br><code>sudo apt-get -y install libc6-i386</code></p>
 <p>这个Ubuntu比较干净 也没有gdb给他整一个</p>
 <p><code>sudo apt-get -y install git gdb</code></p>
 <p>安装ROPgadget</p>
-<p><code>sudo pip install capstone</code></p>
-<p><code>pip install ropgadget</code></p>
+<p><code>sudo pip install capstone</code><br><code>pip install ropgadget</code></p>
 <p>安装one_gadget</p>
-<p><code>sudo apt-get -y install ruby</code></p>
-<p><code>sudo gem install one_gadget</code></p>
+<p><code>sudo apt-get -y install ruby</code><br><code>sudo gem install one_gadget</code></p>
 <p>下载源码以供调试具体怎样调试源码可以去问搜索引擎</p>
-<p><code>apt install libc6-dbg</code></p>
-<p><code>apt install libc6-dbg:i386</code></p>
-<p><code>apt source libc6-dev</code></p>
+<p><code>apt install libc6-dbg</code><br><code>apt install libc6-dbg:i386</code><br><code>apt source libc6-dev</code></p>
 <p>安装libcsearcher</p>
-<p><code>git clone https://github.com/lieanu/LibcSearcher.git</code></p>
-<p><code>cd LibcSearcher</code></p>
-<p><code>python3 setup.py develop</code></p>
+<p><code>git clone https://github.com/lieanu/LibcSearcher.git</code><br><code>cd LibcSearcher</code><br><code>python3 setup.py develop</code></p>
 <p>增强gdb插件的插件有很多，peda、gef、pwndbg、pwngdb，这些插件各有所长。由于各种各样的问题尝试同时安装多个插件在使用的时候总是出现bug（还是我太菜，解决不了兼容问题，哭唧唧），所以你可以安装多个但每次只用一个，通过改写<strong>.gdbinit</strong>文件控制每次加载的插件，这里只安装pwndbg。</p>
-<p><code>git clone https://github.com/pwndbg/pwndbg</code></p>
-<p><code>cd pwndbg</code></p>
-<p><code>./setup.sh</code></p>
+<p><code>git clone https://github.com/pwndbg/pwndbg</code><br><code>cd pwndbg</code><br><code>./setup.sh</code></p>
 <p>命令行输入<code>gdb</code>测试正常，可能有的小伙伴会报错，这时查看一下你的gdb使用的py是什么版本，大家都是py3就很好说话了。</p>
 <p><a href="https://imgchr.com/i/11Bcdg" target="_blank" rel="noopener"><img src="https://s2.ax1x.com/2020/01/30/11Bcdg.jpg" alt="11Bcdg.jpg"></a></p>
 <p>安装pwntools。</p>
@@ -463,7 +452,7 @@
 <p><code>python3 -m pip install --upgrade git+https://github.com/Gallopsled/pwntools.git@dev</code></p>
 <p>上述过程可能会有报错，认真阅读报错信息，利用搜索引擎就可以解决的问题都不是问题。（逃  😈</p>
 <p>tips：由于网络原因使用git可能并不顺畅，可以git挂代理或者直接下载.zip文件离线安装。</p>
-<h1 id="0x03-VSCode的安装及使用"><a href="#0x03-VSCode的安装及使用" class="headerlink" title="0x03 VSCode的安装及使用"></a>0x03 VSCode的安装及使用</h1><p>进入VSCode官网<a href="https://code.visualstudio.com，stable和insiders版本二选一，如果stable不支持远程开发的话那就装insiders版本。安装完WSL2再安装VSCode首次进入后会推荐你安装==Remote" target="_blank" rel="noopener">https://code.visualstudio.com，stable和insiders版本二选一，如果stable不支持远程开发的话那就装insiders版本。安装完WSL2再安装VSCode首次进入后会推荐你安装==Remote</a> - WSL==插件，或者去插件市场搜索这个插件或者==Remote Development==插件。然后安装一些常用插件，例如python插件，c/c++插件，中文插件等。单击二者其一就可以连接到Ubuntu并访问其中文件。</p>
+<h1 id="0x03-VSCode的安装及使用"><a href="#0x03-VSCode的安装及使用" class="headerlink" title="0x03 VSCode的安装及使用"></a>0x03 VSCode的安装及使用</h1><p>进入VSCode官网<a href="https://code.visualstudio.com" target="_blank" rel="noopener">https://code.visualstudio.com</a> ， stable和insiders版本二选一，如果stable不支持远程开发的话那就装insiders版本。安装完WSL2再安装VSCode首次进入后会推荐你安装==Remote - WSL==插件，或者去插件市场搜索这个插件或者==Remote Development==插件。然后安装一些常用插件，例如python插件，c/c++插件，中文插件等。单击二者其一就可以连接到Ubuntu并访问其中文件。</p>
 <p><img src="https://s2.ax1x.com/2020/01/30/11BgoQ.jpg" alt="11BgoQ.jpg"></p>
 <p>我们写一个测试脚本，点击文件→新建文件→然后选择python语言以及python3。写完可以直接在VSCode的终端里运行，测试成功如图。</p>
 <p><img src="https://s2.ax1x.com/2020/01/31/18mxp9.jpg" alt="18mxp9.jpg"></p>
