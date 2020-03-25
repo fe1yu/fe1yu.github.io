@@ -105,7 +105,7 @@
 
 
 
-  <meta name="keywords" content="pwn," />
+  <meta name="keywords" content="CTF,pwn,基础，WSL2，VSCode,远程开发,Windows Terminal," />
 
 
 
@@ -117,7 +117,7 @@
 
 
 <meta name="description" content="0x00 前言随着进入全面建成小康社会的最后一年，Python2也正式停止了支持。网上的pwn基础教程很多都过时了，写着peda、pwntools、pwndbg等只支持py2，现在看起来是不太对，迁移是大势所趋，很多项目尤其是大项目早就完成了向Python3的迁移，有图为证。最近宅在家里又比较闲，想着能不能把环境迁移到Python3上，一番折腾后感觉还不错，故把自己踩到的坑写下来，也写一篇基础教程">
-<meta name="keywords" content="pwn">
+<meta name="keywords" content="CTF,pwn,基础，WSL2，VSCode,远程开发,Windows Terminal">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Python3+VSCode+WSL2的pwn环境配置与使用">
 <meta property="og:url" content="https://blog.fe1yu.com/2020/01/28/py3-VSCode-WSL2的pwn环境配置与测试/index.html">
@@ -138,7 +138,7 @@
 <meta property="og:image" content="https://img-blog.csdnimg.cn/2019082717285142.png">
 <meta property="og:image" content="https://s2.ax1x.com/2020/01/31/18mOkF.jpg">
 <meta property="og:image" content="https://s2.ax1x.com/2020/01/31/18mqTU.jpg">
-<meta property="og:updated_time" content="2020-03-04T08:08:06.614Z">
+<meta property="og:updated_time" content="2020-03-10T08:28:17.875Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Python3+VSCode+WSL2的pwn环境配置与使用">
 <meta name="twitter:description" content="0x00 前言随着进入全面建成小康社会的最后一年，Python2也正式停止了支持。网上的pwn基础教程很多都过时了，写着peda、pwntools、pwndbg等只支持py2，现在看起来是不太对，迁移是大势所趋，很多项目尤其是大项目早就完成了向Python3的迁移，有图为证。最近宅在家里又比较闲，想着能不能把环境迁移到Python3上，一番折腾后感觉还不错，故把自己踩到的坑写下来，也写一篇基础教程">
@@ -213,7 +213,7 @@
       </a>
     </div>
       
-        <p class="site-subtitle">三思而行，及时止损</p>
+        <p class="site-subtitle">谋定后动,及时止损</p>
       
   </div>
 
@@ -458,7 +458,8 @@
       
 
       
-        <h1 id="0x00-前言"><a href="#0x00-前言" class="headerlink" title="0x00 前言"></a>0x00 前言</h1><p>随着进入全面建成小康社会的最后一年，Python2也正式停止了支持。网上的pwn基础教程很多都过时了，写着peda、pwntools、pwndbg等只支持py2，现在看起来是不太对，迁移是大势所趋，很多项目尤其是大项目早就完成了向Python3的迁移，有图为证。最近宅在家里又比较闲，想着能不能把环境迁移到Python3上，一番折腾后感觉还不错，故把自己踩到的坑写下来，也写一篇基础教程。我就是eclipse插件拉满卡死，Vim快捷键记到头秃我也不会用VSCode，哎呀妈呀，真香。至于为什么选择VSCode，那肯定是因为它火，蹭它热度呗。（大雾）在WSL里可以很方便的访问hostOS的文件，而且WSL2使用了完整的的Linux内核，其本质就是基于hyper-V的虚拟机，考虑到兼容性问题故选用WSL2。再辅以Windows Terminal简直破费。话不多说，整。<br><a id="more"></a><br><a href="https://imgchr.com/i/11BsL8" target="_blank" rel="noopener"><img src="https://s2.ax1x.com/2020/01/30/11BsL8.jpg" alt="11BsL8.jpg"></a><br><a href="https://imgchr.com/i/11Brsf" target="_blank" rel="noopener"><img src="https://s2.ax1x.com/2020/01/30/11Brsf.jpg" alt="11Brsf.jpg"></a><br><a href="https://imgchr.com/i/11BDQP" target="_blank" rel="noopener"><img src="https://s2.ax1x.com/2020/01/30/11BDQP.jpg" alt="11BDQP.jpg"></a></p>
+        <h1 id="0x00-前言"><a href="#0x00-前言" class="headerlink" title="0x00 前言"></a>0x00 前言</h1><p>随着进入全面建成小康社会的最后一年，Python2也正式停止了支持。网上的pwn基础教程很多都过时了，写着peda、pwntools、pwndbg等只支持py2，现在看起来是不太对，迁移是大势所趋，很多项目尤其是大项目早就完成了向Python3的迁移，有图为证。最近宅在家里又比较闲，想着能不能把环境迁移到Python3上，一番折腾后感觉还不错，故把自己踩到的坑写下来，也写一篇基础教程。<br><a id="more"></a><br>我就是eclipse插件拉满卡死，Vim快捷键记到头秃我也不会用VSCode，哎呀妈呀，真香。至于为什么选择VSCode，那肯定是因为它火，蹭它热度呗。（大雾）在WSL里可以很方便的访问hostOS的文件，而且WSL2使用了完整的的Linux内核，其本质就是基于hyper-V的虚拟机，考虑到兼容性问题故选用WSL2。再辅以Windows Terminal简直破费。话不多说，整。</p>
+<p><a href="https://imgchr.com/i/11BsL8" target="_blank" rel="noopener"><img src="https://s2.ax1x.com/2020/01/30/11BsL8.jpg" alt="11BsL8.jpg"></a><br><a href="https://imgchr.com/i/11Brsf" target="_blank" rel="noopener"><img src="https://s2.ax1x.com/2020/01/30/11Brsf.jpg" alt="11Brsf.jpg"></a><br><a href="https://imgchr.com/i/11BDQP" target="_blank" rel="noopener"><img src="https://s2.ax1x.com/2020/01/30/11BDQP.jpg" alt="11BDQP.jpg"></a></p>
 <h1 id="0x01-WSL2的安装"><a href="#0x01-WSL2的安装" class="headerlink" title="0x01 WSL2的安装"></a>0x01 WSL2的安装</h1><p>控制面板→程序→启用或关闭windows功能→勾选适用Linux的Windows子系统，重启。WSL2与WSL1不一样，第一次使用虚拟机的同学可能需要进入BIOS开启硬件虚拟化，不同的机型具体操作不同，搜索引擎对症下药即可。</p>
 <p><a href="https://imgchr.com/i/11B6eS" target="_blank" rel="noopener"><img src="https://s2.ax1x.com/2020/01/30/11B6eS.jpg" alt="11B6eS.jpg"></a></p>
 <p>命令行输入<code>WSL --set-default-version 2</code>把WSL2设置为默认WSL，也可以为不同的发行版指定不同的WSL版本，也可以互相转换，具体操作键入 <code>WSL -h</code>查看。</p>
@@ -598,7 +599,15 @@
       
         <div class="post-tags">
           
+            <a href="/tags/CTF/" rel="tag"><i class="fa fa-tag"></i> CTF</a>
+          
             <a href="/tags/pwn/" rel="tag"><i class="fa fa-tag"></i> pwn</a>
+          
+            <a href="/tags/基础，WSL2，VSCode/" rel="tag"><i class="fa fa-tag"></i> 基础，WSL2，VSCode</a>
+          
+            <a href="/tags/远程开发/" rel="tag"><i class="fa fa-tag"></i> 远程开发</a>
+          
+            <a href="/tags/Windows-Terminal/" rel="tag"><i class="fa fa-tag"></i> Windows Terminal</a>
           
         </div>
       
@@ -695,7 +704,7 @@
                 alt="fe1yu" />
             
               <p class="site-author-name" itemprop="name">fe1yu</p>
-              <p class="site-description motion-element" itemprop="description">三思而行，及时止损</p>
+              <p class="site-description motion-element" itemprop="description">谋定后动,及时止损</p>
           </div>
 
           <nav class="site-state motion-element">
@@ -727,7 +736,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-count">14</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -814,7 +823,7 @@
 
 <div class="theme-info">
 	<div class="powered-by">
-	<span class="post-count">博客全站共6.4k字</span>
+	<span class="post-count">博客全站共6.3k字</span>
 </div>
         
 <div class="busuanzi-count">
