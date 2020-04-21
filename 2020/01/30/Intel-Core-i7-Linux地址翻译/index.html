@@ -105,7 +105,7 @@
 
 
 
-  <meta name="keywords" content="第一次," />
+  <meta name="keywords" content="Linux,内存,地址翻译," />
 
 
 
@@ -116,20 +116,22 @@
 
 
 
-<meta name="description" content="fe1yu的博客终于完成了&amp;emsp;经过断断续续的的工作，个人博客终于完成了。&amp;emsp;本地环境（别跟我提环境和工具 电脑就是玩游戏的）都准备好了，但搁置了一段时间，忙于学习（逃 更没时间整这乱七八糟的 这学期伊始便有了重操旧业的念头。买了域名，可惜国内政策繁琐 实名认证 备案之后才能解析访问。">
-<meta name="keywords" content="第一次">
+<meta name="description" content="0x00 前言最近在看书加强基础知识，二进制方面的知识，大部分都是内存的破坏与利。故把自己看CSAPP虚拟内存章节学习的内容写博客记录下来。 0x01 结构虽然i7底层的Haswell微体系结构允许完全的64位虚拟和物理地址空间，但现在i7实现支持48位（256TB）虚拟地址空间和52位（4PB）的物理地址空间，还有一个32位兼容模式。">
+<meta name="keywords" content="Linux,内存,地址翻译">
 <meta property="og:type" content="article">
-<meta property="og:title" content="first time">
-<meta property="og:url" content="https://blog.fe1yu.com/2018/09/25/first-time/index.html">
+<meta property="og:title" content="Intel Core i7&#x2F;Linux地址翻译">
+<meta property="og:url" content="https://blog.fe1yu.com/2020/01/30/Intel-Core-i7-Linux地址翻译/index.html">
 <meta property="og:site_name" content="fe1yu&#39;blog">
-<meta property="og:description" content="fe1yu的博客终于完成了&amp;emsp;经过断断续续的的工作，个人博客终于完成了。&amp;emsp;本地环境（别跟我提环境和工具 电脑就是玩游戏的）都准备好了，但搁置了一段时间，忙于学习（逃 更没时间整这乱七八糟的 这学期伊始便有了重操旧业的念头。买了域名，可惜国内政策繁琐 实名认证 备案之后才能解析访问。">
+<meta property="og:description" content="0x00 前言最近在看书加强基础知识，二进制方面的知识，大部分都是内存的破坏与利。故把自己看CSAPP虚拟内存章节学习的内容写博客记录下来。 0x01 结构虽然i7底层的Haswell微体系结构允许完全的64位虚拟和物理地址空间，但现在i7实现支持48位（256TB）虚拟地址空间和52位（4PB）的物理地址空间，还有一个32位兼容模式。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://s2.ax1x.com/2019/11/08/MZsw7t.jpg">
-<meta property="og:updated_time" content="2020-01-28T13:11:57.865Z">
+<meta property="og:image" content="https://s1.ax1x.com/2020/04/21/JGcpW9.png">
+<meta property="og:image" content="https://s1.ax1x.com/2020/04/21/JJ7Gad.jpg">
+<meta property="og:image" content="https://s1.ax1x.com/2020/04/21/JJ7JIA.jpg">
+<meta property="og:updated_time" content="2020-04-21T15:09:33.382Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="first time">
-<meta name="twitter:description" content="fe1yu的博客终于完成了&amp;emsp;经过断断续续的的工作，个人博客终于完成了。&amp;emsp;本地环境（别跟我提环境和工具 电脑就是玩游戏的）都准备好了，但搁置了一段时间，忙于学习（逃 更没时间整这乱七八糟的 这学期伊始便有了重操旧业的念头。买了域名，可惜国内政策繁琐 实名认证 备案之后才能解析访问。">
-<meta name="twitter:image" content="https://s2.ax1x.com/2019/11/08/MZsw7t.jpg">
+<meta name="twitter:title" content="Intel Core i7&#x2F;Linux地址翻译">
+<meta name="twitter:description" content="0x00 前言最近在看书加强基础知识，二进制方面的知识，大部分都是内存的破坏与利。故把自己看CSAPP虚拟内存章节学习的内容写博客记录下来。 0x01 结构虽然i7底层的Haswell微体系结构允许完全的64位虚拟和物理地址空间，但现在i7实现支持48位（256TB）虚拟地址空间和52位（4PB）的物理地址空间，还有一个32位兼容模式。">
+<meta name="twitter:image" content="https://s1.ax1x.com/2020/04/21/JGcpW9.png">
 
 
 
@@ -159,13 +161,13 @@
 
 
 
-  <link rel="canonical" href="https://blog.fe1yu.com/2018/09/25/first-time/"/>
+  <link rel="canonical" href="https://blog.fe1yu.com/2020/01/30/Intel-Core-i7-Linux地址翻译/"/>
 
 
 
 
 
-  <title>first time | fe1yu'blog</title>
+  <title>Intel Core i7/Linux地址翻译 | fe1yu'blog</title>
   
 
 
@@ -302,7 +304,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://blog.fe1yu.com/2018/09/25/first-time/">
+    <link itemprop="mainEntityOfPage" href="https://blog.fe1yu.com/2020/01/30/Intel-Core-i7-Linux地址翻译/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="fe1yu">
@@ -319,7 +321,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">first time</h1>
+          <h1 class="post-title" itemprop="name headline">Intel Core i7/Linux地址翻译</h1>
         
 
         <div class="post-meta">
@@ -331,8 +333,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-25T21:43:55+08:00">
-                2018-09-25
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-01-30T17:22:48+08:00">
+                2020-01-30
               </time>
             
 
@@ -342,28 +344,6 @@
           </span>
 
           
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/生活随笔/" itemprop="url" rel="index">
-                    <span itemprop="name">生活随笔</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
 
           
             
@@ -372,8 +352,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/09/25/first-time/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2018/09/25/first-time/" itemprop="commentCount"></span>
+                <a href="/2020/01/30/Intel-Core-i7-Linux地址翻译/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/01/30/Intel-Core-i7-Linux地址翻译/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -381,7 +361,7 @@
 
           
           
-             <span id="/2018/09/25/first-time/" class="leancloud_visitors" data-flag-title="first time">
+             <span id="/2020/01/30/Intel-Core-i7-Linux地址翻译/" class="leancloud_visitors" data-flag-title="Intel Core i7/Linux地址翻译">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -408,7 +388,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  266字
+                  776字
                 </span>
               
 
@@ -424,7 +404,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  1分钟
+                  2分钟
                 </span>
               
             </div>
@@ -445,9 +425,122 @@
       
 
       
-        <h1 id="fe1yu的博客终于完成了"><a href="#fe1yu的博客终于完成了" class="headerlink" title="fe1yu的博客终于完成了"></a>fe1yu的博客终于完成了</h1><p>&emsp;<strong>经过断断续续的的工作，个人博客终于完成了。</strong><br>&emsp;本地环境（别跟我提环境和工具 电脑就是玩游戏的）都准备好了，但搁置了一段时间，忙于学习（逃 更没时间整这乱七八糟的 这学期伊始便有了重操旧业的念头。买了域名，可惜国内政策繁琐 实名认证 备案之后才能解析访问。</p>
-<a id="more"></a> 
-<p>玩游戏着凉感冒了 而本人秉持着“是药全是毒，小病靠抗，大病等死”的理念 这三天一直流鼻涕头疼 效率低到发指。找了个域名能在备案之前解析的办法，可以临时访问。markdown的语法还不懂 第一篇博文只能如此将就了而且用的是hexo原始主题 诸位看官见谅。<br>&emsp;希望诸位能偶尔光临寒舍 日后会更新一篇手把手教小白建立个人博客的博文。<br>&emsp;最后附美图一张<br><img src="https://s2.ax1x.com/2019/11/08/MZsw7t.jpg" alt="MZsw7t.jpg"></p>
+        <h1 id="0x00-前言"><a href="#0x00-前言" class="headerlink" title="0x00 前言"></a>0x00 前言</h1><p>最近在看书加强基础知识，二进制方面的知识，大部分都是内存的破坏与利。故把自己看CSAPP虚拟内存章节学习的内容写博客记录下来。</p>
+<h1 id="0x01-结构"><a href="#0x01-结构" class="headerlink" title="0x01 结构"></a>0x01 结构</h1><p>虽然i7底层的Haswell微体系结构允许完全的64位虚拟和物理地址空间，但现在i7实现支持48位（256TB）虚拟地址空间和52位（4PB）的物理地址空间，还有一个32位兼容模式。<br><a id="more"></a><br>TLB是虚拟寻址的，是四路组相联的。L1、L2、和L3高速缓存是物理寻址的，块大小为64字节。L1和L2是8路组相联的，而L3是16组相联的。页大小可以在启动时被配置为4KB或4MB，Linux使用的是4KB的页。</p>
+<h1 id="0x02-翻译过程"><a href="#0x02-翻译过程" class="headerlink" title="0x02 翻译过程"></a>0x02 翻译过程</h1><p>怎么翻译，一图以蔽之。</p>
+<p><img src="https://s1.ax1x.com/2020/04/21/JGcpW9.png" alt="JGcpW9.png"></p>
+<p>4KB的页，所以VPO=PPO=2^12^byte=4KB,剩下的36位作为VPN，且有4级页表，所以每级页表的VPN=9。TLB有2^4^=16个组，故TLBI=4,其余的32位作为TLBT。L1 d-cache有2^6^=64组,故CI=6，每个块大小为64字节，所以CO也为6，剩下的40位作为CT。<br>其中CR3控制寄存器指向第一级页表的起始位置，CR3的值是每个进程上下文的一部分，每次切换上下文时，CR3的值都会被恢复。</p>
+<h3 id="0x01-TLB命中"><a href="#0x01-TLB命中" class="headerlink" title="0x01 TLB命中"></a>0x01 TLB命中</h3><p>CPU把48位的虚拟地址发送给MMU，MMU直接把低12位作为PPO，利用VPN的低4位也就是TLBI确认PPN所在的组，然后再根据TLBT取出PPN与刚才的12位共52位作为PA。</p>
+<h3 id="0x02-TLB不命中"><a href="#0x02-TLB不命中" class="headerlink" title="0x02 TLB不命中"></a><strong>0x02</strong> TLB不命中</h3><p>这时候，根据CR3（基址）和VPN1（偏移）找到L1 PTE（L2页表的基址），以此类推，第四纪页表存储的便是PPN。每个页表条目的具体作业及含义如下。</p>
+<p>第一二三级页表条目格式</p>
+<p><img src="https://s1.ax1x.com/2020/04/21/JJ7Gad.jpg" alt="JJ7Gad.jpg"></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th style="text-align:left"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">字段</td>
+<td style="text-align:left">描述</td>
+</tr>
+<tr>
+<td style="text-align:center">P</td>
+<td style="text-align:left">子页表在物理内存中（1）,不在（0）</td>
+</tr>
+<tr>
+<td style="text-align:center">R/W</td>
+<td style="text-align:left">对于所有可访问的页，只读或读写访问权限</td>
+</tr>
+<tr>
+<td style="text-align:center">U/S</td>
+<td style="text-align:left">对于所有可访问的页，用户或超级用户（内核）访问模式权限</td>
+</tr>
+<tr>
+<td style="text-align:center">WT</td>
+<td style="text-align:left">子页表的直写或写回策略</td>
+</tr>
+<tr>
+<td style="text-align:center">CD</td>
+<td style="text-align:left">能/不能缓存子页表</td>
+</tr>
+<tr>
+<td style="text-align:center">A</td>
+<td style="text-align:left">引用位（由MMU在读和写时设置，由软件清除）</td>
+</tr>
+<tr>
+<td style="text-align:center">PS</td>
+<td style="text-align:left">页大小为4KB或4MB（只对第一层PTE定义）</td>
+</tr>
+<tr>
+<td style="text-align:center">ADDR</td>
+<td style="text-align:left">子页表物理地址的高40位</td>
+</tr>
+<tr>
+<td style="text-align:center">XD</td>
+<td style="text-align:left">能/不能从这个PTE可访问的所有页中取指令</td>
+</tr>
+</tbody>
+</table>
+<p>第四级页表条目的格式</p>
+<p><img src="https://s1.ax1x.com/2020/04/21/JJ7JIA.jpg" alt="JJ7JIA.jpg"></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">字段</td>
+<td>描述</td>
+</tr>
+<tr>
+<td style="text-align:center">P</td>
+<td>子页表在物理内存中（1）,不在（0）</td>
+</tr>
+<tr>
+<td style="text-align:center">R/W</td>
+<td>对于子页，只读或读写访问权限</td>
+</tr>
+<tr>
+<td style="text-align:center">U/S</td>
+<td>对于子页，用户或超级用户（内核）访问模式权限</td>
+</tr>
+<tr>
+<td style="text-align:center">WT</td>
+<td>子页的直写或写回策略</td>
+</tr>
+<tr>
+<td style="text-align:center">CD</td>
+<td>能/不能缓存</td>
+</tr>
+<tr>
+<td style="text-align:center">A</td>
+<td>引用位（由MMU在读和写时设置，由软件清除）</td>
+</tr>
+<tr>
+<td style="text-align:center">D</td>
+<td>修改位（由MMU在读和写时设置，由软件清除）</td>
+</tr>
+<tr>
+<td style="text-align:center">G</td>
+<td>全局页（在任务切换时，不从TLB中驱逐出去）</td>
+</tr>
+<tr>
+<td style="text-align:center">ADDR</td>
+<td>物理地址的最高40位（PPN）</td>
+</tr>
+<tr>
+<td style="text-align:center">XD</td>
+<td>能不能从这个子页中取指令</td>
+</tr>
+</tbody>
+</table>
+<p>未完待续</p>
 
       
     </div>
@@ -497,7 +590,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://blog.fe1yu.com/2018/09/25/first-time/" title="first time">https://blog.fe1yu.com/2018/09/25/first-time/</a>
+    <a href="https://blog.fe1yu.com/2020/01/30/Intel-Core-i7-Linux地址翻译/" title="Intel Core i7/Linux地址翻译">https://blog.fe1yu.com/2020/01/30/Intel-Core-i7-Linux地址翻译/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -512,7 +605,11 @@
       
         <div class="post-tags">
           
-            <a href="/tags/第一次/" rel="tag"><i class="fa fa-tag"></i> 第一次</a>
+            <a href="/tags/Linux/" rel="tag"><i class="fa fa-tag"></i> Linux</a>
+          
+            <a href="/tags/内存/" rel="tag"><i class="fa fa-tag"></i> 内存</a>
+          
+            <a href="/tags/地址翻译/" rel="tag"><i class="fa fa-tag"></i> 地址翻译</a>
           
         </div>
       
@@ -525,15 +622,15 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2020/01/28/py3-VSCode-WSL2的pwn环境配置与测试/" rel="next" title="Python3+VSCode+WSL2的pwn环境配置与使用">
+                <i class="fa fa-chevron-left"></i> Python3+VSCode+WSL2的pwn环境配置与使用
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/09/26/今天周几/" rel="prev" title="今天周几">
-                今天周几 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -690,7 +787,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#fe1yu的博客终于完成了"><span class="nav-text">fe1yu的博客终于完成了</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#0x00-前言"><span class="nav-text">0x00 前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x01-结构"><span class="nav-text">0x01 结构</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x02-翻译过程"><span class="nav-text">0x02 翻译过程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#0x01-TLB命中"><span class="nav-text">0x01 TLB命中</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x02-TLB不命中"><span class="nav-text">0x02 TLB不命中</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
