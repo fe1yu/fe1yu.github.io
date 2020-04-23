@@ -127,7 +127,7 @@
 <meta property="og:image" content="https://s1.ax1x.com/2020/04/21/JGcpW9.png">
 <meta property="og:image" content="https://s1.ax1x.com/2020/04/21/JJ7Gad.jpg">
 <meta property="og:image" content="https://s1.ax1x.com/2020/04/21/JJ7JIA.jpg">
-<meta property="og:updated_time" content="2020-04-22T13:27:11.259Z">
+<meta property="og:updated_time" content="2020-04-23T12:25:43.719Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Intel Core i7&#x2F;Linux地址翻译">
 <meta name="twitter:description" content="0x00 前言最近在看书补习基础知识，二进制漏洞方面的知识，大部分都是内存的破坏与利。故把自己看CSAPP虚拟内存章节学习的内容写博客记录下来，为了加强印象与分享。 0x01 结构虽然i7底层的Haswell微体系结构允许完全的64位虚拟和物理地址空间，但现在i7实现支持48位（256TB）虚拟地址空间和52位（4PB）的物理地址空间，还有一个32位兼容模式。">
@@ -377,7 +377,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1.2k字
+                  1.6k字
                 </span>
               
 
@@ -393,7 +393,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  4分钟
+                  5分钟
                 </span>
               
             </div>
@@ -531,9 +531,11 @@
 </table>
 <p>XD（禁止执行）是在64位系统中引入的，可以用来禁止从某些内存取指令，使得操作系统内核降低了缓冲区溢出攻击的危险。</p>
 <h2 id="0x03-L1命中"><a href="#0x03-L1命中" class="headerlink" title="0x03 L1命中"></a>0x03 L1命中</h2><p>在得到PA之后，就可以根据PA取相应地址上的数据，首先根据CI和CT找到数据位于L1 d-cache的哪一行，然后根据CO取数据，然后送回CPU中。当MMU翻译每一个虚拟地址时它还会更新另外两个两个内核缺页处理程序会用到的位。每次访问一个页时，MMU都会设置A位，称为引用位（reference bit）。内核可以用这个引用位来实现它的页替换算法。每次对一个页进行了写之后，MMU都会设置D位，又称为修改位或脏位（dirty bit），修改位告诉内核在复制替换页时必须写回牺牲页。内核可以通过调用一条特殊的内核模式指令来清除引用位或修改位。</p>
-<h2 id="0x04-Others"><a href="#0x04-Others" class="headerlink" title="0x04 Others"></a>0x04 Others</h2><p>这里知识简单描述了取某一地址数据的过程，实际上取指令类似，相关的结构为，L1 i-cache，i-TLB（上面使用的时d-TLB，而且忽略了一二级TLB），也没有描述L1不命中，取下一级取数据的过程，所以说是简化，但总的来说，这些过程都是大同小异。</p>
-<h1 id="0x03-名词索引"><a href="#0x03-名词索引" class="headerlink" title="0x03 名词索引"></a>0x03 名词索引</h1><p>VPO：虚拟页面偏移（字节）<br>VPN：虚拟页号<br>TLB：翻译后备缓冲器<br>TLBI：TLB索引<br>TLBT：TLB标记<br>PPO：物理页面偏移量（字节）<br>PPN：物理页号<br>CO：缓冲块内的额字节偏移量<br>CI：高速缓存索引<br>CT：高速缓存标记<br>MMU：内存管理单元</p>
-<h1 id="0x04-参考"><a href="#0x04-参考" class="headerlink" title="0x04 参考"></a>0x04 参考</h1><p>1.CSAPP</p>
+<h2 id="0x04-加速翻译"><a href="#0x04-加速翻译" class="headerlink" title="0x04 加速翻译"></a>0x04 加速翻译</h2><p>上述只是描述了一个顺序的两个步骤，虚拟地址经过MMU变成物理地址，然后取L1取数据。但是实际情况下硬件实现使用了一个灵活的技巧，允许这些步骤部分重叠，加速访问。例如上述例子中，4KB的页有一个12位的VPO，PPO。L1是八路组相联，物理寻址的，有64个组和大小为64字节的缓存块。每个物理地址有log（2）64=6个缓存偏移和6个索引位，这12位恰好是VPO部分。当CPU翻译地址时，就把VPN发给MMU，VPO发给高速L1缓存。当MMU向TLB请求页表条目时，L1正利用VPO位查找相应的组，并读出组里的8个标记和相应的字，当MMU得到PPN（CT）时，缓存直接准备好试着把这个PPN与8个标记位中的一个进行匹配了。当然前提是L1命中。</p>
+<h2 id="0x04Others"><a href="#0x04Others" class="headerlink" title="0x04Others"></a>0x04Others</h2><p>这里知识简单描述了取某一地址数据的过程，实际上取指令类似，相关的结构为，L1 i-cache，i-TLB（上面使用的时d-TLB，而且忽略了一二级TLB），也没有描述L1不命中，取下一级取数据的过程，所以说是简化，但总的来说，这些过程都是大同小异。</p>
+<h1 id="0x03-扩展"><a href="#0x03-扩展" class="headerlink" title="0x03 扩展"></a>0x03 扩展</h1><p>我记得以前看到一篇文章，是阿里安全的一篇安卓内核读写的漏洞，从上面我们可以看出，页表条目里有很大与安全相关的标志位，通过一些漏洞改写权限位，然后利用文章的利用方法将页表地址改到内核空间，达到内核读写的能力。大概的利用思路如上。文末我会给出链接。</p>
+<h1 id="0x04-名词索引"><a href="#0x04-名词索引" class="headerlink" title="0x04 名词索引"></a>0x04 名词索引</h1><p>VPO：虚拟页面偏移（字节）<br>VPN：虚拟页号<br>TLB：翻译后备缓冲器<br>TLBI：TLB索引<br>TLBT：TLB标记<br>PPO：物理页面偏移量（字节）<br>PPN：物理页号<br>CO：缓冲块内的额字节偏移量<br>CI：高速缓存索引<br>CT：高速缓存标记<br>MMU：内存管理单元</p>
+<h1 id="0x05-参考"><a href="#0x05-参考" class="headerlink" title="0x05 参考"></a>0x05 参考</h1><p>1.CSAPP<br>2.<a href="https://yq.aliyun.com/articles/601280" target="_blank" rel="noopener"><strong>内核空间镜像攻击揭秘：ARM 硬件特性，竟能开启安卓8终端的上帝模式？</strong></a></p>
 <p>PS：有时间再把其他部分写一写</p>
 
       
@@ -781,7 +783,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#0x00-前言"><span class="nav-text">0x00 前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x01-结构"><span class="nav-text">0x01 结构</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x02-翻译过程"><span class="nav-text">0x02 翻译过程</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#0x01-TLB命中"><span class="nav-text">0x01 TLB命中</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x02-TLB不命中"><span class="nav-text">0x02 TLB不命中</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x03-L1命中"><span class="nav-text">0x03 L1命中</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x04-Others"><span class="nav-text">0x04 Others</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x03-名词索引"><span class="nav-text">0x03 名词索引</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x04-参考"><span class="nav-text">0x04 参考</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#0x00-前言"><span class="nav-text">0x00 前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x01-结构"><span class="nav-text">0x01 结构</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x02-翻译过程"><span class="nav-text">0x02 翻译过程</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#0x01-TLB命中"><span class="nav-text">0x01 TLB命中</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x02-TLB不命中"><span class="nav-text">0x02 TLB不命中</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x03-L1命中"><span class="nav-text">0x03 L1命中</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x04-加速翻译"><span class="nav-text">0x04 加速翻译</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x04Others"><span class="nav-text">0x04Others</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x03-扩展"><span class="nav-text">0x03 扩展</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x04-名词索引"><span class="nav-text">0x04 名词索引</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x05-参考"><span class="nav-text">0x05 参考</span></a></li></ol></div>
             
 
           </div>
@@ -819,7 +821,7 @@
 
 <div class="theme-info">
 	<div class="powered-by">
-	<span class="post-count">博客全站共7.6k字</span>
+	<span class="post-count">博客全站共7.9k字</span>
 </div>
         
 <div class="busuanzi-count">
